@@ -1,39 +1,43 @@
-# .spacelift/blueprint.yaml
-# (Place this file in the root of your repository or in a .spacelift/ directory)
-
-name: "Static Website AWS (Pulumi)"
-description: "Deploys the 'static-site' Pulumi project to AWS S3 and CloudFront."
-version: "1.0.2" # Incremented version
-
-# Input parameters (can be minimal if the stack name is fixed)
 inputs:
-  - name: aws_region
-    type: string
+  - id: stack_name_suffix
+    name: "Stack Name Suffix"
+    type: "short_text"
+    description: "Suffix for the Pulumi stack name (e.g., dev, staging, prod). The full Pulumi stack name will be 'static-site-[suffix]'."
+    default: "dev"
+
+  - id: aws_region
+    name: "AWS Region"
+    type: "short_text"
     description: "AWS region to deploy resources into."
-    default: "us-east-2" # As you specified
+    default: "us-east-2"
 
-# Define how the Spacelift Stack will be configured
-stack_config:
-  branch: "master" # Your default branch name
-  project_root: "/" # Pulumi.yaml is at the root
-  runner_image: "public.ecr.aws/spacelift/runner-pulumi-python:latest"
-  vendor_config:
-    type: PULUMI
-    pulumi:
-      # login_url is not needed as you're using Pulumi Service with an access token
-      stack_name: "static-site" # Hardcoded to your initialized stack name
+stack:
+  name: "static-site-{{ inputs.stack_name_suffix }}"
+  space: "root"
+  description: "Static website on AWS (Pulumi) for {{ inputs.stack_name_suffix }} environment, created by {{ context.user.name }}"
+  labels:
+    - "pulumi"
+    - "static-website"
+    - "env:{{ inputs.stack_name_suffix }}"
   administrative: false
-  autodeploy: true
+  runner_image: "public.ecr.aws/spacelift/runner-pulumi-python:latest"
 
-# Define Contexts to be automatically attached
-contexts:
-  - "aws-credentials" # Contains AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and now PULUMI_ACCESS_TOKEN
+  vcs:
+    provider: GITHUB
+    repository: "aaronkcarpenter/pulumi_sample"
+    branch: "master"
+    project_root: "/"
 
-# Define environment variables
-environment:
-  - name: AWS_REGION
-    value: "{{ inputs.aws_region }}"
-  # PULUMI_CONFIG_PASSPHRASE is not needed for Pulumi Service backend
-# Policies can be added later if needed
-# policies:
-#   - "my-aws-security-policy"
+  vendor:
+    pulumi:
+      login_url: "https://api.pulumi.com"
+      stack_name: "static-site-{{ inputs.stack_name_suffix }}" # This is the Pulumi stack name
+
+  attachments:
+    contexts:
+      - id: "aws-credentials" # Context with AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and PULUMI_ACCESS_TOKEN
+
+  environment:
+    variables:
+      - name: AWS_REGION
+        value: "{{ inputs.aws_region }}"
