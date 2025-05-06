@@ -1,0 +1,11 @@
+name: static_site_sample
+description: A static site deployed via S3 w/CF Distro
+runtime:
+  name: python
+  options:
+    toolchain: pip
+    virtualenv: venv
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: static-website-aws-python
