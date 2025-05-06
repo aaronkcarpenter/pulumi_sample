@@ -1,0 +1,39 @@
+# .spacelift/blueprint.yaml
+# (Place this file in the root of your repository or in a .spacelift/ directory)
+
+name: "Static Website AWS (Pulumi)"
+description: "Deploys the 'static-site' Pulumi project to AWS S3 and CloudFront."
+version: "1.0.2" # Incremented version
+
+# Input parameters (can be minimal if the stack name is fixed)
+inputs:
+  - name: aws_region
+    type: string
+    description: "AWS region to deploy resources into."
+    default: "us-east-2" # As you specified
+
+# Define how the Spacelift Stack will be configured
+stack_config:
+  branch: "master" # Your default branch name
+  project_root: "/" # Pulumi.yaml is at the root
+  runner_image: "public.ecr.aws/spacelift/runner-pulumi-python:latest"
+  vendor_config:
+    type: PULUMI
+    pulumi:
+      # login_url is not needed as you're using Pulumi Service with an access token
+      stack_name: "static-site" # Hardcoded to your initialized stack name
+  administrative: false
+  autodeploy: true
+
+# Define Contexts to be automatically attached
+contexts:
+  - "aws-credentials" # Contains AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and now PULUMI_ACCESS_TOKEN
+
+# Define environment variables
+environment:
+  - name: AWS_REGION
+    value: "{{ inputs.aws_region }}"
+  # PULUMI_CONFIG_PASSPHRASE is not needed for Pulumi Service backend
+# Policies can be added later if needed
+# policies:
+#   - "my-aws-security-policy"
