@@ -61,7 +61,7 @@ public_access_block = aws.s3.BucketPublicAccessBlock(
 # If you are ONLY using CloudFront with an Origin Access Identity (OAI), this might not be needed
 # or might be configured differently.
 # For simplicity and to match typical static website hosting directly from S3:
-def public_read_policy_for_bucket(bucket_name):
+def public_read_policy_for_bucket(the_bucket_arn): # Renamed parameter for clarity
     return pulumi.Output.json_dumps({
         "Version": "2012-10-17",
         "Statement": [{
@@ -69,7 +69,7 @@ def public_read_policy_for_bucket(bucket_name):
             "Principal": "*",
             "Action": ["s3:GetObject"],
             "Resource": [
-                f"arn:aws:s3:::{bucket_name}/*", # Policy refers to objects in bucket
+                f"{the_bucket_arn}/*",
             ]
         }]
     })
