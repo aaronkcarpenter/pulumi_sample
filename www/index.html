@@ -3,6 +3,2026 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aetheriaum | Future-Forward E-commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* CSS Variables for Sophisticated Tech-Luxury Theme */
+      :root {
+        --color-dark-bg: #0d0d10; /* Very dark charcoal/near black */
+        --color-light-bg: #1a1a1f; /* Slightly lighter dark for sections */
+        --color-text-primary: #eaeaea; /* Soft white */
+        --color-text-secondary: #b0b0b5; /* Light grey for secondary text */
+        --color-accent-1: #00c6ff; /* Vibrant, electric blue */
+        --color-accent-2: #8a2be2; /* Deep, rich violet/purple */
+        --color-border: #2c2c32; /* Subtle dark border */
+        --color-card-bg: #151518; /* Slightly lighter than dark-bg for cards */
+        --color-overlay: rgba(0, 0, 0, 0.85); /* Darker overlay */
+        --font-primary: "Inter", sans-serif; /* Body text */
+        --font-display: "Montserrat", sans-serif; /* Headings and prominent text */
+      }
+
+      /* Base Styles & Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        background-color: var(--color-dark-bg);
+        color: var(--color-text-primary);
+        line-height: 1.7; /* Increased line height for readability and luxury feel */
+        overflow-x: hidden; /* Prevent horizontal scroll from animations */
+      }
+
+      a {
+        color: var(--color-accent-1);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--color-accent-2);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Utility Classes */
+      .container {
+        max-width: 1280px; /* Slightly wider container */
+        margin: 0 auto;
+        padding: 0 25px; /* Increased padding */
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .section-heading {
+        font-family: var(--font-display);
+        font-size: 3rem; /* Larger headings */
+        font-weight: 700; /* Slightly less bulky, still strong */
+        margin-bottom: 50px; /* More space */
+        color: var(--color-text-primary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
+        line-height: 1.2;
+      }
+
+      .section-heading::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -15px; /* Adjusted position */
+        transform: translateX(-50%);
+        width: 80px; /* Wider underline */
+        height: 4px; /* Thicker underline */
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        border-radius: 2px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 32px; /* Larger padding */
+        border-radius: 10px; /* Slightly more rounded */
+        font-weight: 600;
+        font-size: 1.05rem; /* Slightly larger font */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 0.8px; /* More letter spacing */
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 198, 255, 0.3); /* Enhanced shadow */
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-5px); /* More pronounced lift */
+        box-shadow: 0 10px 30px rgba(0, 198, 255, 0.5);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--color-accent-1);
+        border: 2px solid var(--color-accent-1);
+      }
+
+      .btn-secondary:hover {
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        color: #fff;
+        border-color: transparent; /* Border disappears on hover */
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(13, 13, 16, 0.85); /* Darker, more opaque */
+        backdrop-filter: blur(15px); /* Stronger glassmorphism */
+        z-index: 1000;
+        padding: 20px 0; /* More vertical padding */
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: var(--font-display);
+        font-size: 2rem; /* Larger logo */
+        font-weight: 800; /* Stronger logo */
+        color: var(--color-text-primary);
+        letter-spacing: 2px;
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-menu li {
+        margin-left: 40px; /* More spacing */
+      }
+
+      .nav-menu a {
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        font-size: 1.05rem;
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px; /* Adjusted position */
+        width: 0;
+        height: 3px; /* Thicker underline */
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        color: var(--color-text-primary); /* Text brightens on hover */
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      .nav-icons {
+        display: flex;
+        gap: 25px; /* More spacing */
+      }
+
+      .nav-icons i {
+        font-size: 1.3rem; /* Larger icons */
+        color: var(--color-text-secondary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .nav-icons i:hover {
+        color: var(--color-accent-1);
+      }
+
+      .hamburger-menu {
+        display: none;
+        font-size: 2rem; /* Larger hamburger */
+        cursor: pointer;
+        color: var(--color-text-primary);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          var(--color-dark-bg) 0%,
+          var(--color-light-bg) 100%
+        );
+      }
+
+      .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images.unsplash.com/photo-1617042375876-a14585765176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* Futuristic product/tech image */
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.3) blur(5px); /* Darken and blur more for premium feel */
+        transform: scale(1.08); /* Slight zoom for depth */
+        animation: heroZoom 25s infinite alternate ease-in-out; /* Slower animation */
+      }
+
+      @keyframes heroZoom {
+        from {
+          transform: scale(1.08);
+        }
+        to {
+          transform: scale(1.12);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 900px; /* Wider content area */
+        padding: 30px;
+        animation: fadeIn 2s ease-out; /* Slower fade-in */
+      }
+
+      .hero-content h1 {
+        font-family: var(--font-display);
+        font-size: 5.5rem; /* Larger, more impactful heading */
+        font-weight: 800; /* Stronger, but not heaviest */
+        margin-bottom: 25px;
+        line-height: 1.05;
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 25px rgba(0, 198, 255, 0.6); /* Stronger glow */
+      }
+
+      .hero-content p {
+        font-size: 1.6rem; /* Larger body text */
+        color: var(--color-text-secondary);
+        margin-bottom: 50px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+      }
+
+      .hero-buttons .btn {
+        margin: 0 15px;
+      }
+
+      /* Product Categories Section */
+      .categories-section {
+        padding: 100px 0; /* More padding */
+        background-color: var(--color-light-bg);
+        border-top: 1px solid var(--color-border);
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px, 1fr)
+        ); /* Larger min-width */
+        gap: 40px; /* More spacing */
+      }
+
+      .category-card {
+        background-color: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 15px; /* More rounded */
+        overflow: hidden;
+        text-align: center;
+        padding: 40px; /* More padding */
+        transition: transform 0.4s ease, box-shadow 0.4s ease,
+          background-color 0.4s ease;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+      }
+
+      .category-card:hover {
+        transform: translateY(-15px); /* More pronounced lift */
+        box-shadow: 0 15px 40px rgba(0, 198, 255, 0.25); /* Stronger accent shadow */
+        background-color: #1f1f24; /* Slightly lighter on hover */
+      }
+
+      .category-card i {
+        font-size: 3.5rem; /* Larger icons */
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 25px;
+        text-shadow: 0 0 10px rgba(0, 198, 255, 0.4); /* Subtle glow */
+      }
+
+      .category-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.8rem; /* Larger heading */
+        font-weight: 600; /* Less bulky */
+        margin-bottom: 15px;
+        color: var(--color-text-primary);
+        letter-spacing: 0.5px;
+      }
+
+      .category-card p {
+        font-size: 1rem;
+        color: var(--color-text-secondary);
+      }
+
+      /* Featured Products Section */
+      .featured-products-section {
+        padding: 100px 0;
+        background-color: var(--color-dark-bg);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .product-card {
+        background-color: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 198, 255, 0.25);
+      }
+
+      .product-card-image {
+        height: 300px; /* Taller images */
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease; /* Slower zoom */
+      }
+
+      .product-card:hover .product-card-image img {
+        transform: scale(1.08); /* More pronounced zoom */
+      }
+
+      .product-card-content {
+        padding: 25px; /* More padding */
+        text-align: center;
+      }
+
+      .product-card-content h3 {
+        font-family: var(--font-display);
+        font-size: 1.6rem; /* Larger heading */
+        font-weight: 600; /* Less bulky */
+        margin-bottom: 12px;
+        color: var(--color-text-primary);
+        letter-spacing: 0.5px;
+      }
+
+      .product-card-content p {
+        font-size: 1.25rem; /* Larger price */
+        font-weight: 700;
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+      }
+
+      .product-card-content .btn {
+        width: 100%;
+      }
+
+      /* Call to Action Section */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+        padding: 100px 0;
+        text-align: center;
+        color: #fff;
+        box-shadow: inset 0 8px 30px rgba(0, 0, 0, 0.4); /* Deeper inner shadow */
+      }
+
+      .cta-section h2 {
+        font-family: var(--font-display);
+        font-size: 3.5rem; /* Larger heading */
+        font-weight: 800;
+        margin-bottom: 25px;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Stronger glow */
+      }
+
+      .cta-section p {
+        font-size: 1.3rem; /* Larger body text */
+        margin-bottom: 50px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--color-light-bg);
+        padding: 60px 0; /* More padding */
+        border-top: 1px solid var(--color-border);
+        color: var(--color-text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px; /* More spacing */
+      }
+
+      .footer-col {
+        flex: 1;
+        min-width: 220px; /* Slightly wider columns */
+      }
+
+      .footer-col h4 {
+        font-family: var(--font-display);
+        font-size: 1.2rem; /* Larger heading */
+        font-weight: 600; /* Less bulky */
+        color: var(--color-text-primary);
+        margin-bottom: 25px;
+        position: relative;
+        letter-spacing: 0.5px;
+      }
+
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 50px; /* Wider underline */
+        height: 3px; /* Thicker underline */
+        background: var(--color-accent-1);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li:not(:last-child) {
+        margin-bottom: 12px; /* More spacing */
+      }
+
+      .footer-col ul li a {
+        color: var(--color-text-secondary);
+        display: block;
+        transition: color 0.3s ease, padding-left 0.3s ease;
+      }
+
+      .footer-col ul li a:hover {
+        color: var(--color-accent-1);
+        padding-left: 8px; /* More pronounced hover effect */
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px; /* Larger social icons */
+        width: 45px;
+        background-color: var(--color-border);
+        margin: 0 12px 12px 0;
+        text-align: center;
+        border-radius: 50%;
+        color: var(--color-text-primary);
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #fff;
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-1),
+          var(--color-accent-2)
+        );
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 25px;
+        border-top: 1px solid var(--color-border);
+      }
+
+      /* Mobile Menu Overlay */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-overlay);
+        backdrop-filter: blur(10px); /* Stronger blur */
+        z-index: 1001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+
+      .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-nav-menu {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-nav-menu li {
+        margin-bottom: 35px; /* More spacing */
+      }
+
+      .mobile-nav-menu a {
+        font-family: var(--font-display);
+        font-size: 2.5rem; /* Larger mobile links */
+        font-weight: 700; /* Stronger mobile links */
+        color: var(--color-text-primary);
+        transition: color 0.3s ease;
+      }
+
+      .mobile-nav-menu a:hover {
+        color: var(--color-accent-1);
+      }
+
+      .close-menu-btn {
+        position: absolute;
+        top: 40px; /* More space from top */
+        right: 40px;
+        font-size: 3rem; /* Larger close button */
+        color: var(--color-text-primary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .close-menu-btn:hover {
+        color: var(--color-accent-1);
+      }
+
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(60px); /* More pronounced initial transform */
+        transition: opacity 1s ease-out, transform 1s ease-out; /* Slower, smoother animation */
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .nav-menu,
+        .nav-icons {
+          display: none;
+        }
+
+        .hamburger-menu {
+          display: block;
+        }
+
+        .hero-content h1 {
+          font-size: 4rem;
+        }
+
+        .hero-content p {
+          font-size: 1.3rem;
+        }
+
+        .section-heading {
+          font-size: 2.5rem;
+        }
+
+        .category-grid,
+        .product-grid {
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .footer .container {
+          justify-content: center;
+          text-align: center;
+        }
+
+        .footer-col {
+          min-width: 100%;
+        }
+
+        .footer-col h4::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .social-links {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 3.2rem;
+        }
+
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+
+        .hero-buttons .btn {
+          display: block;
+          margin: 20px auto;
+        }
+
+        .section-heading {
+          font-size: 2.2rem;
+        }
+
+        .cta-section h2 {
+          font-size: 3rem;
+        }
+
+        .cta-section p {
+          font-size: 1.1rem;
+        }
+
+        .category-card,
+        .product-card {
+          padding: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header .container {
+          padding: 0 20px;
+        }
+
+        .logo {
+          font-size: 1.8rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .section-heading {
+          font-size: 1.8rem;
+          margin-bottom: 30px;
+        }
+
+        .section-heading::after {
+          bottom: -10px;
+          width: 60px;
+          height: 3px;
+        }
+
+        .cta-section h2 {
+          font-size: 2.5rem;
+        }
+
+        .cta-section p {
+          font-size: 0.95rem;
+        }
+
+        .btn {
+          padding: 12px 24px;
+          font-size: 0.95rem;
+        }
+
+        .mobile-nav-menu li {
+          margin-bottom: 25px;
+        }
+
+        .mobile-nav-menu a {
+          font-size: 2rem;
+        }
+
+        .close-menu-btn {
+          top: 25px;
+          right: 25px;
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="logo">AETHERIA</div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-icons">
+          <i class="fas fa-search"></i>
+          <i class="fas fa-user"></i>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+      <i class="fas fa-times close-menu-btn" id="close-menu-btn"></i>
+      <ul class="mobile-nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="hero-background"></div>
+      <div class="hero-content reveal">
+        <h1>Experience Tomorrow, Today.</h1>
+        <p>
+          Discover cutting-edge technology and fashion that redefines the
+          future. Unleash your potential with Aetheria.
+        </p>
+        <div class="hero-buttons">
+          <a href="#products" class="btn btn-primary">Shop Now</a>
+          <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Categories Section -->
+    <section class="categories-section" id="categories">
+      <div class="container">
+        <h2 class="section-heading text-center reveal">Explore Categories</h2>
+        <div class="category-grid">
+          <div class="category-card reveal">
+            <i class="fas fa-robot"></i>
+            <h3>AI & Robotics</h3>
+            <p>Intelligent companions and automated solutions.</p>
+          </div>
+          <div class="category-card reveal">
+            <i class="fas fa-microchip"></i>
+            <h3>Wearable Tech</h3>
+            <p>Seamless integration of technology into your lifestyle.</p>
+          </div>
+          <div class="category-card reveal">
+            <i class="fas fa-tshirt"></i>
+            <h3>Bio-Fashion</h3>
+            <p>Sustainable and adaptive apparel for the modern era.</p>
+          </div>
+          <div class="category-card reveal">
+            <i class="fas fa-vr-cardboard"></i>
+            <h3>Immersive Reality</h3>
+            <p>Step into new dimensions with our VR/AR gear.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products-section" id="products">
+      <div class="container">
+        <h2 class="section-heading text-center reveal">Featured Products</h2>
+        <div class="product-grid">
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1606220588913-b3aacb4b7817?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 1"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Quantum Earbuds</h3>
+              <p>$299.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1585155975979-a30433dcd567?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 2"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Aetheria Smartwatch</h3>
+              <p>$449.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 3"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Holo-Projector</h3>
+              <p>$799.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 4"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Neural Interface</h3>
+              <p>$1299.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section reveal" id="contact">
+      <div class="container">
+        <h2>Join the Future.</h2>
+        <p>
+          Sign up for exclusive access to new product launches, special offers,
+          and insights into the world of tomorrow.
+        </p>
+        <a href="#" class="btn btn-secondary">Sign Up Now</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-col">
+          <h4>AETHERIA</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#products">All Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Warranty</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Aetheria. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const hamburgerMenu = document.getElementById("hamburger-menu");
+      const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav-menu a");
+
+      hamburgerMenu.addEventListener("click", () => {
+        mobileMenuOverlay.classList.add("active");
+        document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+      });
+
+      closeMenuBtn.addEventListener("click", () => {
+        mobileMenuOverlay.classList.remove("active");
+        document.body.style.overflow = ""; // Restore scrolling
+      });
+
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenuOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Scroll Reveal Animation
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            } else {
+              // Optional: remove 'active' class when out of view to re-trigger on scroll back
+              // entry.target.classList.remove('active');
+            }
+          });
+        },
+        {
+          threshold: 0.1, // Trigger when 10% of the element is visible
+          rootMargin: "0px 0px -50px 0px", // Adjust trigger point
+        }
+      );
+
+      revealElements.forEach((el) => observer.observe(el));
+
+      // Smooth scrolling for anchor links (optional, as scroll-behavior: smooth is in CSS)
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aetheria | Future-Forward E-commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* CSS Variables for Futuristic Theme */
+      :root {
+        --color-dark-bg: #0a0a0c;
+        --color-light-bg: #1a1a1d;
+        --color-text-primary: #e0e0e0;
+        --color-text-secondary: #a0a0a5;
+        --color-accent-blue: #007bff; /* Bright blue */
+        --color-accent-purple: #8a2be2; /* Blue Violet */
+        --color-border: #2a2a2e;
+        --color-card-bg: #121215;
+        --color-overlay: rgba(0, 0, 0, 0.7);
+        --font-primary: "Inter", sans-serif;
+        --font-display: "Orbitron", sans-serif;
+      }
+
+      /* Base Styles & Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        background-color: var(--color-dark-bg);
+        color: var(--color-text-primary);
+        line-height: 1.6;
+        overflow-x: hidden; /* Prevent horizontal scroll from animations */
+      }
+
+      a {
+        color: var(--color-accent-blue);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--color-accent-purple);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Utility Classes */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .section-heading {
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: var(--color-text-primary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-heading::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -10px;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-blue),
+          var(--color-accent-purple)
+        );
+        border-radius: 2px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-blue),
+          var(--color-accent-purple)
+        );
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--color-accent-blue);
+        border: 2px solid var(--color-accent-blue);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--color-accent-blue);
+        color: #fff;
+        border-color: var(--color-accent-blue);
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(
+          10,
+          10,
+          12,
+          0.8
+        ); /* Semi-transparent dark background */
+        backdrop-filter: blur(10px); /* Glassmorphism effect */
+        z-index: 1000;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--color-text-primary);
+        letter-spacing: 1px;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-menu li {
+        margin-left: 30px;
+      }
+
+      .nav-menu a {
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        font-size: 1rem;
+        position: relative;
+      }
+
+      .nav-menu a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-blue),
+          var(--color-accent-purple)
+        );
+        transition: width 0.3s ease;
+      }
+
+      .nav-menu a:hover::after {
+        width: 100%;
+      }
+
+      .nav-icons {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-icons i {
+        font-size: 1.2rem;
+        color: var(--color-text-secondary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .nav-icons i:hover {
+        color: var(--color-accent-blue);
+      }
+
+      .hamburger-menu {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--color-text-primary);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          var(--color-dark-bg) 0%,
+          var(--color-light-bg) 100%
+        );
+      }
+
+      .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images.unsplash.com/photo-1617042375876-a14585765176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* Futuristic product/tech image */
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.4) blur(3px); /* Darken and blur for text readability */
+        transform: scale(1.05); /* Slight zoom for depth */
+        animation: heroZoom 20s infinite alternate ease-in-out;
+      }
+
+      @keyframes heroZoom {
+        from {
+          transform: scale(1.05);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 800px;
+        padding: 20px;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      .hero-content h1 {
+        font-family: var(--font-display);
+        font-size: 4.5rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        line-height: 1.1;
+        background: linear-gradient(
+          45deg,
+          var(--color-accent-blue),
+          var(--color-accent-purple)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+      }
+
+      .hero-content p {
+        font-size: 1.4rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons .btn {
+        margin: 0 10px;
+      }
+
+      /* Product Categories Section */
+      .categories-section {
+        padding: 80px 0;
+        background-color: var(--color-light-bg);
+        border-top: 1px solid var(--color-border);
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .category-card {
+        background-color: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        overflow: hidden;
+        text-align: center;
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .category-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+      }
+
+      .category-card i {
+        font-size: 3rem;
+        color: var(--color-accent-blue);
+        margin-bottom: 20px;
+      }
+
+      .category-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
+      }
+
+      .category-card p {
+        font-size: 0.95rem;
+        color: var(--color-text-secondary);
+      }
+
+      /* Featured Products Section */
+      .featured-products-section {
+        padding: 80px 0;
+        background-color: var(--color-dark-bg);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .product-card {
+        background-color: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+      }
+
+      .product-card-image {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .product-card:hover .product-card-image img {
+        transform: scale(1.05);
+      }
+
+      .product-card-content {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .product-card-content h3 {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
+      }
+
+      .product-card-content p {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-accent-blue);
+        margin-bottom: 15px;
+      }
+
+      .product-card-content .btn {
+        width: 100%;
+      }
+
+      /* Call to Action Section */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--color-accent-blue),
+          var(--color-accent-purple)
+        );
+        padding: 80px 0;
+        text-align: center;
+        color: #fff;
+        box-shadow: inset 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .cta-section h2 {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--color-light-bg);
+        padding: 50px 0;
+        border-top: 1px solid var(--color-border);
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .footer .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .footer-col {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .footer-col h4 {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: var(--color-text-primary);
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 40px;
+        height: 2px;
+        background: var(--color-accent-blue);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      .footer-col ul li a {
+        color: var(--color-text-secondary);
+        display: block;
+        transition: color 0.3s ease;
+      }
+
+      .footer-col ul li a:hover {
+        color: var(--color-accent-blue);
+        padding-left: 5px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        background-color: var(--color-border);
+        margin: 0 10px 10px 0;
+        text-align: center;
+        border-radius: 50%;
+        color: var(--color-text-primary);
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #fff;
+        background-color: var(--color-accent-blue);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color-border);
+      }
+
+      /* Mobile Menu Overlay */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-overlay);
+        backdrop-filter: blur(5px);
+        z-index: 1001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-nav-menu {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-nav-menu li {
+        margin-bottom: 25px;
+      }
+
+      .mobile-nav-menu a {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        color: var(--color-text-primary);
+        font-weight: 700;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-nav-menu a:hover {
+        color: var(--color-accent-blue);
+      }
+
+      .close-menu-btn {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 2.5rem;
+        color: var(--color-text-primary);
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .close-menu-btn:hover {
+        color: var(--color-accent-blue);
+      }
+
+      /* Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .nav-menu,
+        .nav-icons {
+          display: none;
+        }
+
+        .hamburger-menu {
+          display: block;
+        }
+
+        .hero-content h1 {
+          font-size: 3.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1.2rem;
+        }
+
+        .section-heading {
+          font-size: 2rem;
+        }
+
+        .category-grid,
+        .product-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .footer .container {
+          justify-content: center;
+          text-align: center;
+        }
+
+        .footer-col {
+          min-width: 100%;
+        }
+
+        .footer-col h4::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .social-links {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero-content p {
+          font-size: 1rem;
+        }
+
+        .hero-buttons .btn {
+          display: block;
+          margin: 15px auto;
+        }
+
+        .section-heading {
+          font-size: 1.8rem;
+        }
+
+        .cta-section h2 {
+          font-size: 2.5rem;
+        }
+
+        .cta-section p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header .container {
+          padding: 0 15px;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-content p {
+          font-size: 0.9rem;
+        }
+
+        .section-heading {
+          font-size: 1.5rem;
+        }
+
+        .cta-section h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">AETHERIA</div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-icons">
+          <i class="fas fa-search"></i>
+          <i class="fas fa-user"></i>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+      <i class="fas fa-times close-menu-btn" id="close-menu-btn"></i>
+      <ul class="mobile-nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <section class="hero-section" id="home">
+      <div class="hero-background"></div>
+      <div class="hero-content reveal">
+        <h1>Experience Tomorrow, Today.</h1>
+        <p>
+          Discover cutting-edge technology and fashion that redefines the
+          future. Unleash your potential with Aetheria.
+        </p>
+        <div class="hero-buttons">
+          <a href="#products" class="btn btn-primary">Shop Now</a>
+          <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section" id="categories">
+      <div class="container">
+        <h2 class="section-heading text-center reveal">Explore Categories</h2>
+        <div class="category-grid">
+          <div class="category-card reveal">
+            <i class="fas fa-robot"></i>
+            <h3>AI & Robotics</h3>
+            <p>Intelligent companions and automated solutions.</p>
+          </div>
+          <div class="category-card reveal">
+            <i class="fas fa-microchip"></i>
+            <h3>Wearable Tech</h3>
+            <p>Seamless integration of technology into your lifestyle.</p>
+          </div>
+          <div class="category-card reveal">
+            <i class="fas fa-tshirt"></i>
+            <h3>Bio-Fashion</h3>
+            <p>Sustainable and adaptive apparel for the modern era.</p>
+          </div>
+          <div class="category-card reveal">
+            <i class="fas fa-vr-cardboard"></i>
+            <h3>Immersive Reality</h3>
+            <p>Step into new dimensions with our VR/AR gear.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-products-section" id="products">
+      <div class="container">
+        <h2 class="section-heading text-center reveal">Featured Products</h2>
+        <div class="product-grid">
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1606220588913-b3aacb4b7817?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 1"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Quantum Earbuds</h3>
+              <p>$299.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1585155975979-a30433dcd567?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 2"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Aetheria Smartwatch</h3>
+              <p>$449.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 3"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Holo-Projector</h3>
+              <p>$799.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Product 4"
+              />
+            </div>
+            <div class="product-card-content">
+              <h3>Neural Interface</h3>
+              <p>$1299.99</p>
+              <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section reveal" id="contact">
+      <div class="container">
+        <h2>Join the Future.</h2>
+        <p>
+          Sign up for exclusive access to new product launches, special offers,
+          and insights into the world of tomorrow.
+        </p>
+        <a href="#" class="btn btn-secondary">Sign Up Now</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-col">
+          <h4>AETHERIA</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#products">All Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Warranty</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Aetheria. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const hamburgerMenu = document.getElementById("hamburger-menu");
+      const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav-menu a");
+
+      hamburgerMenu.addEventListener("click", () => {
+        mobileMenuOverlay.classList.add("active");
+        document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
+      });
+
+      closeMenuBtn.addEventListener("click", () => {
+        mobileMenuOverlay.classList.remove("active");
+        document.body.style.overflow = ""; // Restore scrolling
+      });
+
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenuOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        });
+      });
+
+      // Scroll Reveal Animation
+      const revealElements = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            } else {
+              // Optional: remove 'active' class when out of view to re-trigger on scroll back
+              // entry.target.classList.remove('active');
+            }
+          });
+        },
+        {
+          threshold: 0.1, // Trigger when 10% of the element is visible
+          rootMargin: "0px 0px -50px 0px", // Adjust trigger point
+        }
+      );
+
+      revealElements.forEach((el) => observer.observe(el));
+
+      // Smooth scrolling for anchor links (optional, as scroll-behavior: smooth is in CSS)
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notion Portfolio</title>
     <link
       rel="stylesheet"
@@ -523,4 +2543,4 @@
       });
     </script>
   </body>
-</html>
+</html> -->
