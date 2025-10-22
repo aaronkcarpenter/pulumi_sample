@@ -200,7 +200,7 @@ import pulumi_aws as aws
 # =============================================================================
 
 config = pulumi.Config()
-path = config.get("path") or "./www"
+path = config.get("sitePath") or "./www"
 index_document = config.get("indexDocument") or "index.html"
 error_document = config.get("errorDocument") or "error.html"
 

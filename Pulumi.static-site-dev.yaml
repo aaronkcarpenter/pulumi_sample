@@ -3,4 +3,3 @@ config:
   static_site_sample:sitePath: www
   static_site_sample:indexDocument: index.html
   static_site_sample:errorDocument: error.html
-  aws:profile: AWSAdministratorAccess-008971670608
