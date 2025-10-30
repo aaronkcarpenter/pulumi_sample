@@ -195,6 +195,16 @@ import os
 import pulumi
 import pulumi_aws as aws
 
+# --- Force env-credential mode in CI (ignore any stray AWS profiles) ---------
+# Workers don't have ~/.aws/config. If a Context or shell sets AWS_PROFILE,
+# the AWS SDK will try (and fail) to load that profile. Neutralize it here.
+for _k in ("AWS_PROFILE", "AWS_DEFAULT_PROFILE"):
+    if os.environ.get(_k):
+        pulumi.log.info(f"Unsetting {_k} to use environment credentials in CI")
+        os.environ.pop(_k, None)
+# Tell the SDK not to read shared config files (~/.aws/config)
+os.environ.setdefault("AWS_SDK_LOAD_CONFIG", "0")
+# -----------------------------------------------------------------------------
 # =============================================================================
 # Configuration
 # =============================================================================
