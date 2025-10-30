@@ -309,12 +309,12 @@ cdn = aws.cloudfront.Distribution(
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=404,
             response_code=404,
-            response_page_path=f"/{error_document_path}",  # Using www/error.html
+            response_page_path=f"/{error_document_path}",
         ),
-        aws.cloudfront.DistributionCustomErrorResponseArgs(  # Often good to have a 403 -> index.html for SPAs
+        aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=403,
             response_code=200,
-            response_page_path=f"/{index_document_path}",  # Using www/index.html
+            response_page_path=f"/{index_document_path}",
         ),
     ],
     restrictions=aws.cloudfront.DistributionRestrictionsArgs(
@@ -325,7 +325,7 @@ cdn = aws.cloudfront.Distribution(
     viewer_certificate=aws.cloudfront.DistributionViewerCertificateArgs(
         cloudfront_default_certificate=True,
     ),
-    default_root_object=index_document_path,  # Using www/index.html
+    default_root_object=index_document_path,
 )
 
 # Export the URLs and hostnames of the bucket and distribution.
