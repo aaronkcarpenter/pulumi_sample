@@ -189,59 +189,36 @@ Author: Platform Team
 Last Updated: 2025-01-15
 """
 
-import mimetypes
-import os
+import pulumi # pyright: ignore[reportMissingImports]
+import pulumi_aws as aws # type: ignore
+import pulumi_synced_folder as synced_folder
 
-import pulumi
-import pulumi_aws as aws
-
-# --- Force env-credential mode in CI (ignore any stray AWS profiles) ---------
-# Workers don't have ~/.aws/config. If a Context or shell sets AWS_PROFILE,
-# the AWS SDK will try (and fail) to load that profile. Neutralize it here.
-for _k in ("AWS_PROFILE", "AWS_DEFAULT_PROFILE"):
-    if os.environ.get(_k):
-        pulumi.log.info(f"Unsetting {_k} to use environment credentials in CI")
-        os.environ.pop(_k, None)
-# Tell the SDK not to read shared config files (~/.aws/config)
-os.environ.setdefault("AWS_SDK_LOAD_CONFIG", "0")
-# -----------------------------------------------------------------------------
-# =============================================================================
-# Configuration
-# =============================================================================
-
+# Import the program's configuration settings.
 config = pulumi.Config()
-path = config.get("sitePath") or "./www"
+path = config.get("path") or "./www"
 index_document = config.get("indexDocument") or "index.html"
 error_document = config.get("errorDocument") or "error.html"
 
-# =============================================================================
-# S3 Bucket Configuration
-# =============================================================================
+# Account for synced_folder creating www/ prefix in S3
+index_document_path = f"www/{index_document}"
+error_document_path = f"www/{error_document}"
 
-# Create an S3 bucket for static website hosting
-bucket = aws.s3.BucketV2(
-    "s3-website-bucket",
-    tags={
-        "Name": "Static Website Bucket",
-        "ManagedBy": "Pulumi",
-        "Environment": pulumi.get_stack(),
-    },
-)
+# Create an S3 bucket.
+bucket = aws.s3.BucketV2("s3-website-bucket")
 
-# Configure the S3 bucket for website hosting
+# Configure the S3 bucket for website hosting.
 site_bucket_website_configuration = aws.s3.BucketWebsiteConfigurationV2(
     "s3-website-bucket-website-configuration",
     bucket=bucket.id,
     index_document=aws.s3.BucketWebsiteConfigurationV2IndexDocumentArgs(
-        suffix=index_document,
+        suffix=index_document_path,  # Using www/index.html
     ),
     error_document=aws.s3.BucketWebsiteConfigurationV2ErrorDocumentArgs(
-        key=error_document,
+        key=error_document_path,  # Using www/error.html
     ),
 )
 
-# Set ownership controls for the bucket
-# Required for applying public-read ACLs to objects
+# Set ownership controls for the new bucket
 ownership_controls = aws.s3.BucketOwnershipControls(
     "ownership-controls",
     bucket=bucket.id,
@@ -250,8 +227,7 @@ ownership_controls = aws.s3.BucketOwnershipControls(
     ),
 )
 
-# Configure public access block settings
-# These must be disabled to allow public website access
+# Configure public access block settings.
 public_access_block = aws.s3.BucketPublicAccessBlock(
     "public-access-block",
     bucket=bucket.id,
@@ -261,31 +237,20 @@ public_access_block = aws.s3.BucketPublicAccessBlock(
     restrict_public_buckets=False,
 )
 
-# =============================================================================
-# S3 Bucket Policy
-# =============================================================================
 
-
+# Apply a public read policy to the S3 bucket.
 def public_read_policy_for_bucket(the_bucket_arn):
-    """
-    Generate a bucket policy that allows public read access to all objects.
-
-    Args:
-        the_bucket_arn: The ARN of the S3 bucket
-
-    Returns:
-        JSON string containing the bucket policy
-    """
     return pulumi.Output.json_dumps(
         {
             "Version": "2012-10-17",
             "Statement": [
                 {
-                    "Sid": "PublicReadGetObject",
                     "Effect": "Allow",
                     "Principal": "*",
                     "Action": ["s3:GetObject"],
-                    "Resource": [f"{the_bucket_arn}/*"],
+                    "Resource": [
+                        f"{the_bucket_arn}/*",
+                    ],
                 }
             ],
         }
@@ -299,93 +264,39 @@ bucket_policy = aws.s3.BucketPolicy(
     opts=pulumi.ResourceOptions(depends_on=[public_access_block, ownership_controls]),
 )
 
-# =============================================================================
-# Website Content Upload
-# =============================================================================
+# Use a synced folder to manage the files of the website.
+bucket_folder = synced_folder.S3BucketFolder(
+    "bucket-folder",
+    acl="public-read",
+    bucket_name=bucket.bucket,
+    path=path,
+    opts=pulumi.ResourceOptions(depends_on=[bucket_policy]),
+)
 
-
-def upload_files_to_bucket(bucket_name, source_path):
-    """
-    Upload all files from source directory to S3 bucket root.
-
-    Args:
-        bucket_name: Name of the S3 bucket
-        source_path: Local directory containing files to upload
-
-    Returns:
-        List of BucketObject resources
-    """
-    bucket_objects = []
-
-    # Walk through the source directory
-    for root, dirs, files in os.walk(source_path):
-        for file in files:
-            # Get full file path
-            file_path = os.path.join(root, file)
-
-            # Get relative path from source directory (this is the S3 key)
-            relative_path = os.path.relpath(file_path, source_path)
-
-            # Determine content type
-            content_type, _ = mimetypes.guess_type(file_path)
-            if content_type is None:
-                content_type = "application/octet-stream"
-
-            # Create a valid Pulumi resource name (replace invalid characters)
-            resource_name = f"file-{relative_path.replace('/', '-').replace('.', '-')}"
-
-            # Upload file to S3 bucket root
-            obj = aws.s3.BucketObject(
-                resource_name,
-                bucket=bucket_name,
-                source=pulumi.FileAsset(file_path),
-                key=relative_path,  # Files go to bucket root
-                content_type=content_type,
-                acl="public-read",
-                opts=pulumi.ResourceOptions(depends_on=[bucket_policy]),
-            )
-
-            bucket_objects.append(obj)
-
-    return bucket_objects
-
-
-# Upload all files from ./www to bucket root
-website_files = upload_files_to_bucket(bucket.bucket, path)
-
-# =============================================================================
-# CloudFront Distribution
-# =============================================================================
-
-# Create CloudFront distribution for CDN and HTTPS support
+# Create a CloudFront CDN to distribute and cache the website.
 cdn = aws.cloudfront.Distribution(
     "cdn",
     enabled=True,
-    comment=f"CDN for {pulumi.get_project()} - {pulumi.get_stack()}",
-    # Origin configuration - points to S3 website endpoint
     origins=[
         aws.cloudfront.DistributionOriginArgs(
             origin_id=bucket.arn,
             domain_name=site_bucket_website_configuration.website_endpoint,
             custom_origin_config=aws.cloudfront.DistributionOriginCustomOriginConfigArgs(
-                origin_protocol_policy="http-only",  # S3 website endpoints use HTTP
+                origin_protocol_policy="http-only",
                 http_port=80,
                 https_port=443,
                 origin_ssl_protocols=["TLSv1.2"],
             ),
         )
     ],
-    # Default cache behavior
     default_cache_behavior=aws.cloudfront.DistributionDefaultCacheBehaviorArgs(
         target_origin_id=bucket.arn,
-        viewer_protocol_policy="redirect-to-https",  # Force HTTPS
+        viewer_protocol_policy="redirect-to-https",
         allowed_methods=["GET", "HEAD", "OPTIONS"],
         cached_methods=["GET", "HEAD", "OPTIONS"],
-        # Cache TTL settings (in seconds)
-        default_ttl=600,  # 10 minutes
+        default_ttl=600,
         max_ttl=600,
         min_ttl=600,
-        # Forward query strings but not cookies (typical for static sites)
         forwarded_values=aws.cloudfront.DistributionDefaultCacheBehaviorForwardedValuesArgs(
             query_string=True,
             cookies=aws.cloudfront.DistributionDefaultCacheBehaviorForwardedValuesCookiesArgs(
@@ -393,66 +304,32 @@ cdn = aws.cloudfront.Distribution(
             ),
         ),
     ),
-    # Use only North America and Europe edge locations (lowest cost tier)
     price_class="PriceClass_100",
-    # Custom error responses
     custom_error_responses=[
-        # Return custom 404 page
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=404,
             response_code=404,
-            response_page_path=f"/{error_document}",
-            error_caching_min_ttl=300,  # Cache 404 responses for 5 minutes
+            response_page_path=f"/{error_document_path}",  # Using www/error.html
         ),
-        # Return index.html for 403 errors (useful for SPAs with client-side routing)
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=403,
             response_code=200,
-            response_page_path=f"/{index_document}",
-            error_caching_min_ttl=300,
+            response_page_path=f"/{index_document_path}",  # Using www/index.html
         ),
     ],
-    # Geographic restrictions (none)
     restrictions=aws.cloudfront.DistributionRestrictionsArgs(
         geo_restriction=aws.cloudfront.DistributionRestrictionsGeoRestrictionArgs(
             restriction_type="none",
         ),
     ),
-    # Use default CloudFront SSL certificate
     viewer_certificate=aws.cloudfront.DistributionViewerCertificateArgs(
         cloudfront_default_certificate=True,
     ),
-    # Default root object - serves this file when accessing the root URL
-    default_root_object=index_document,
-    # Tags for resource organization
-    tags={
-        "Name": "Static Website CDN",
-        "ManagedBy": "Pulumi",
-        "Environment": pulumi.get_stack(),
-    },
-    # Ensure files are uploaded before creating distribution
-    opts=pulumi.ResourceOptions(depends_on=website_files),
+    default_root_object=index_document_path,  # Using www/index.html
 )
 
-# =============================================================================
-# Outputs
-# =============================================================================
-
-# Export important values for reference
+# Export the URLs and hostnames of the bucket and distribution.
 pulumi.export("s3_bucket_name", bucket.bucket)
-pulumi.export("s3_bucket_arn", bucket.arn)
 pulumi.export("s3_website_url", site_bucket_website_configuration.website_endpoint)
-pulumi.export("cloudfront_distribution_id", cdn.id)
 pulumi.export("cloudfront_domain_name", cdn.domain_name)
 pulumi.export("website_url", pulumi.Output.concat("https://", cdn.domain_name))
-
-# Export cache invalidation command for convenience
-pulumi.export(
-    "cache_invalidation_command",
-    pulumi.Output.concat(
-        "aws cloudfront create-invalidation --distribution-id ", cdn.id, " --paths '/*'"
-    ),
-)
-
-# Export file count for verification
-pulumi.export("files_uploaded", len(website_files))
