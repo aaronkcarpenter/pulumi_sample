@@ -128,8 +128,7 @@ cdn = aws.cloudfront.Distribution(
                 forward="none", # Typically 'none' for static sites, unless you use cookies
             ),
         ),
-        # It's good practice to specify the S3 origin access identity if you want to restrict direct S3 access
-        # origin_request_policy_id= # Optional: for more control over what's forwarded to origin
+       
     ),
     price_class="PriceClass_100",
     custom_error_responses=[
@@ -138,7 +137,7 @@ cdn = aws.cloudfront.Distribution(
             response_code=404,
             response_page_path=f"/{error_document}",
         ),
-        aws.cloudfront.DistributionCustomErrorResponseArgs( # Often good to have a 403 -> index.html for SPAs
+        aws.cloudfront.DistributionCustomErrorResponseArgs( 
             error_code=403,
             response_code=200,
             response_page_path=f"/{index_document}",
