@@ -331,7 +331,6 @@ pulumi.export("s3_website_url", site_bucket_website_configuration.website_endpoi
 pulumi.export("cloudfront_domain_name", cdn.domain_name)
 pulumi.export("cloudfront_distribution_id", cdn.id)
 pulumi.export("website_url", pulumi.Output.concat("https://", cdn.domain_name))
-pulumi.export("files_uploaded", bucket_folder.file_count)
 pulumi.export(
     "cache_invalidation_command",
     pulumi.Output.concat(
