@@ -1,6 +1,8 @@
 """
+
 Pulumi Static Website with S3 and CloudFront
 Deploys a static website to S3 with CloudFront CDN distribution.
+
 """
 
 import pulumi
@@ -13,22 +15,19 @@ path = config.get("path") or "./www"
 index_document = config.get("indexDocument") or "index.html"
 error_document = config.get("errorDocument") or "error.html"
 
-# ✅ FIX: Don't add www/ prefix - synced_folder uploads to bucket root
-index_document_path = f"www/{index_document}"
-error_document_path = f"www/{error_document}"
-
 # Create an S3 bucket.
 bucket = aws.s3.BucketV2("s3-website-bucket")
 
 # Configure the S3 bucket for website hosting.
+# AWS requires JUST the filename, no paths allowed
 site_bucket_website_configuration = aws.s3.BucketWebsiteConfigurationV2(
     "s3-website-bucket-website-configuration",
     bucket=bucket.id,
     index_document=aws.s3.BucketWebsiteConfigurationV2IndexDocumentArgs(
-        suffix=index_document_path,  # ✅ Just "index.html"
+        suffix=index_document,  # Must be just "index.html"
     ),
     error_document=aws.s3.BucketWebsiteConfigurationV2ErrorDocumentArgs(
-        key=error_document_path,  # ✅ Just "error.html"
+        key=error_document,  # Must be just "error.html"
     ),
 )
 
@@ -78,12 +77,13 @@ bucket_policy = aws.s3.BucketPolicy(
     opts=pulumi.ResourceOptions(depends_on=[public_access_block, ownership_controls]),
 )
 
-# Use a synced folder to manage the files of the website.
+
 bucket_folder = synced_folder.S3BucketFolder(
     "bucket-folder",
     acl="public-read",
     bucket_name=bucket.bucket,
     path=path,
+    managed_objects=False,
     opts=pulumi.ResourceOptions(depends_on=[bucket_policy]),
 )
 
@@ -123,12 +123,12 @@ cdn = aws.cloudfront.Distribution(
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=404,
             response_code=404,
-            response_page_path=f"/{error_document}",  # ✅ "/error.html"
+            response_page_path=f"/{error_document}",  # "/error.html"
         ),
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=403,
             response_code=200,
-            response_page_path=f"/{index_document}",  # ✅ "/index.html"
+            response_page_path=f"/{index_document}",  # "/index.html"
         ),
     ],
     restrictions=aws.cloudfront.DistributionRestrictionsArgs(
@@ -139,7 +139,7 @@ cdn = aws.cloudfront.Distribution(
     viewer_certificate=aws.cloudfront.DistributionViewerCertificateArgs(
         cloudfront_default_certificate=True,
     ),
-    default_root_object=index_document,  # ✅ "index.html"
+    default_root_object=index_document,  # "index.html"
 )
 
 # Export the URLs and hostnames of the bucket and distribution.
