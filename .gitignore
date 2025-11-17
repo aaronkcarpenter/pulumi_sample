@@ -178,3 +178,5 @@ cython_debug/
 /.vscode/
 
 
+state-*.json
+state.json
