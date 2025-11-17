@@ -1,1088 +1,11 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aaron SPacelift Demo | Future-Forward E-commerce</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <style>
-      :root {
-        --color-dark-bg: #0d0d10; 
-        --color-light-bg: #1a1a1f;
-        --color-text-primary: #eaeaea;
-        --color-text-secondary: #b0b0b5;
-        --color-accent-1: #00c6ff;
-        --color-accent-2: #8a2be2; 
-        --color-border: #2c2c32; 
-        --color-card-bg: #151518; 
-        --color-overlay: rgba(0, 0, 0, 0.85); 
-        --font-primary: "Inter", sans-serif; 
-        --font-display: "Montserrat", sans-serif; 
-      }
-
-      /* Base Styles & Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: var(--font-primary);
-        background-color: var(--color-dark-bg);
-        color: var(--color-text-primary);
-        line-height: 1.7; 
-        overflow-x: hidden; 
-      }
-
-      a {
-        color: var(--color-accent-1);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      a:hover {
-        color: var(--color-accent-2);
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      /* Utility Classes */
-      .container {
-        max-width: 1280px; 
-        margin: 0 auto;
-        padding: 0 25px;
-      }
-
-      .text-center {
-        text-align: center;
-      }
-
-      .section-heading {
-        font-family: var(--font-display);
-        font-size: 3rem; /* Larger headings */
-        font-weight: 700; /* Slightly less bulky, still strong */
-        margin-bottom: 50px; /* More space */
-        color: var(--color-text-primary);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        position: relative;
-        display: inline-block;
-        line-height: 1.2;
-      }
-
-      .section-heading::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: -15px; /* Adjusted position */
-        transform: translateX(-50%);
-        width: 80px; /* Wider underline */
-        height: 4px; /* Thicker underline */
-        background: linear-gradient(
-          90deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        border-radius: 2px;
-      }
-
-      /* Buttons */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 32px; /* Larger padding */
-        border-radius: 10px; /* Slightly more rounded */
-        font-weight: 600;
-        font-size: 1.05rem; /* Slightly larger font */
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: none;
-        text-transform: uppercase;
-        letter-spacing: 0.8px; /* More letter spacing */
-      }
-
-      .btn-primary {
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        color: #fff;
-        box-shadow: 0 6px 20px rgba(0, 198, 255, 0.3); /* Enhanced shadow */
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-5px); /* More pronounced lift */
-        box-shadow: 0 10px 30px rgba(0, 198, 255, 0.5);
-      }
-
-      .btn-secondary {
-        background-color: transparent;
-        color: var(--color-accent-1);
-        border: 2px solid var(--color-accent-1);
-      }
-
-      .btn-secondary:hover {
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        color: #fff;
-        border-color: transparent; /* Border disappears on hover */
-      }
-
-      /* Header */
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(13, 13, 16, 0.85); /* Darker, more opaque */
-        backdrop-filter: blur(15px); /* Stronger glassmorphism */
-        z-index: 1000;
-        padding: 20px 0; /* More vertical padding */
-        border-bottom: 1px solid var(--color-border);
-      }
-
-      .header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo {
-        font-family: var(--font-display);
-        font-size: 2rem; /* Larger logo */
-        font-weight: 800; /* Stronger logo */
-        color: var(--color-text-primary);
-        letter-spacing: 2px;
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .nav-menu {
-        display: flex;
-        list-style: none;
-      }
-
-      .nav-menu li {
-        margin-left: 40px; /* More spacing */
-      }
-
-      .nav-menu a {
-        color: var(--color-text-secondary);
-        font-weight: 500;
-        font-size: 1.05rem;
-        position: relative;
-        transition: color 0.3s ease;
-      }
-
-      .nav-menu a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -8px; /* Adjusted position */
-        width: 0;
-        height: 3px; /* Thicker underline */
-        background: linear-gradient(
-          90deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        transition: width 0.3s ease;
-      }
-
-      .nav-menu a:hover {
-        color: var(--color-text-primary); /* Text brightens on hover */
-      }
-
-      .nav-menu a:hover::after {
-        width: 100%;
-      }
-
-      .nav-icons {
-        display: flex;
-        gap: 25px; /* More spacing */
-      }
-
-      .nav-icons i {
-        font-size: 1.3rem; /* Larger icons */
-        color: var(--color-text-secondary);
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-
-      .nav-icons i:hover {
-        color: var(--color-accent-1);
-      }
-
-      .hamburger-menu {
-        display: none;
-        font-size: 2rem; /* Larger hamburger */
-        cursor: pointer;
-        color: var(--color-text-primary);
-      }
-
-      /* Hero Section */
-      .hero-section {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        overflow: hidden;
-        background: linear-gradient(
-          135deg,
-          var(--color-dark-bg) 0%,
-          var(--color-light-bg) 100%
-        );
-      }
-
-      .hero-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("https://images.unsplash.com/photo-1617042375876-a14585765176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); 
-        background-size: cover;
-        background-position: center;
-        filter: brightness(0.3) blur(5px); /* Darken and blur more for premium feel */
-        transform: scale(1.08); /* Slight zoom for depth */
-        animation: heroZoom 25s infinite alternate ease-in-out; /* Slower animation */
-      }
-
-      @keyframes heroZoom {
-        from {
-          transform: scale(1.08);
-        }
-        to {
-          transform: scale(1.12);
-        }
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 10;
-        max-width: 900px; /* Wider content area */
-        padding: 30px;
-        animation: fadeIn 2s ease-out; /* Slower fade-in */
-      }
-
-      .hero-content h1 {
-        font-family: var(--font-display);
-        font-size: 5.5rem; /* Larger, more impactful heading */
-        font-weight: 800; /* Stronger, but not heaviest */
-        margin-bottom: 25px;
-        line-height: 1.05;
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 25px rgba(0, 198, 255, 0.6); /* Stronger glow */
-      }
-
-      .hero-content p {
-        font-size: 1.6rem; /* Larger body text */
-        color: var(--color-text-secondary);
-        margin-bottom: 50px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.5;
-      }
-
-      .hero-buttons .btn {
-        margin: 0 15px;
-      }
-
-      /* Product Categories Section */
-      .categories-section {
-        padding: 100px 0; /* More padding */
-        background-color: var(--color-light-bg);
-        border-top: 1px solid var(--color-border);
-      }
-
-      .category-grid {
-        display: grid;
-        grid-template-columns: repeat(
-          auto-fit,
-          minmax(300px, 1fr)
-        ); /* Larger min-width */
-        gap: 40px; /* More spacing */
-      }
-
-      .category-card {
-        background-color: var(--color-card-bg);
-        border: 1px solid var(--color-border);
-        border-radius: 15px; /* More rounded */
-        overflow: hidden;
-        text-align: center;
-        padding: 40px; /* More padding */
-        transition: transform 0.4s ease, box-shadow 0.4s ease,
-          background-color 0.4s ease;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Deeper shadow */
-      }
-
-      .category-card:hover {
-        transform: translateY(-15px); /* More pronounced lift */
-        box-shadow: 0 15px 40px rgba(0, 198, 255, 0.25); /* Stronger accent shadow */
-        background-color: #1f1f24; /* Slightly lighter on hover */
-      }
-
-      .category-card i {
-        font-size: 3.5rem; /* Larger icons */
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 25px;
-        text-shadow: 0 0 10px rgba(0, 198, 255, 0.4); /* Subtle glow */
-      }
-
-      .category-card h3 {
-        font-family: var(--font-display);
-        font-size: 1.8rem; /* Larger heading */
-        font-weight: 600; /* Less bulky */
-        margin-bottom: 15px;
-        color: var(--color-text-primary);
-        letter-spacing: 0.5px;
-      }
-
-      .category-card p {
-        font-size: 1rem;
-        color: var(--color-text-secondary);
-      }
-
-      /* Featured Products Section */
-      .featured-products-section {
-        padding: 100px 0;
-        background-color: var(--color-dark-bg);
-      }
-
-      .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 40px;
-      }
-
-      .product-card {
-        background-color: var(--color-card-bg);
-        border: 1px solid var(--color-border);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-      }
-
-      .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(0, 198, 255, 0.25);
-      }
-
-      .product-card-image {
-        height: 300px; /* Taller images */
-        overflow: hidden;
-        position: relative;
-      }
-
-      .product-card-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease; /* Slower zoom */
-      }
-
-      .product-card:hover .product-card-image img {
-        transform: scale(1.08); /* More pronounced zoom */
-      }
-
-      .product-card-content {
-        padding: 25px; /* More padding */
-        text-align: center;
-      }
-
-      .product-card-content h3 {
-        font-family: var(--font-display);
-        font-size: 1.6rem; /* Larger heading */
-        font-weight: 600; /* Less bulky */
-        margin-bottom: 12px;
-        color: var(--color-text-primary);
-        letter-spacing: 0.5px;
-      }
-
-      .product-card-content p {
-        font-size: 1.25rem; /* Larger price */
-        font-weight: 700;
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-      }
-
-      .product-card-content .btn {
-        width: 100%;
-      }
-
-      /* Call to Action Section */
-      .cta-section {
-        background: linear-gradient(
-          135deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-        padding: 100px 0;
-        text-align: center;
-        color: #fff;
-        box-shadow: inset 0 8px 30px rgba(0, 0, 0, 0.4); /* Deeper inner shadow */
-      }
-
-      .cta-section h2 {
-        font-family: var(--font-display);
-        font-size: 3.5rem; /* Larger heading */
-        font-weight: 800;
-        margin-bottom: 25px;
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Stronger glow */
-      }
-
-      .cta-section p {
-        font-size: 1.3rem; /* Larger body text */
-        margin-bottom: 50px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-      }
-
-      /* Footer */
-      .footer {
-        background-color: var(--color-light-bg);
-        padding: 60px 0; /* More padding */
-        border-top: 1px solid var(--color-border);
-        color: var(--color-text-secondary);
-        font-size: 0.95rem;
-      }
-
-      .footer .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 40px; /* More spacing */
-      }
-
-      .footer-col {
-        flex: 1;
-        min-width: 220px; /* Slightly wider columns */
-      }
-
-      .footer-col h4 {
-        font-family: var(--font-display);
-        font-size: 1.2rem; /* Larger heading */
-        font-weight: 600; /* Less bulky */
-        color: var(--color-text-primary);
-        margin-bottom: 25px;
-        position: relative;
-        letter-spacing: 0.5px;
-      }
-
-      .footer-col h4::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -8px;
-        width: 50px; /* Wider underline */
-        height: 3px; /* Thicker underline */
-        background: var(--color-accent-1);
-      }
-
-      .footer-col ul {
-        list-style: none;
-      }
-
-      .footer-col ul li:not(:last-child) {
-        margin-bottom: 12px; /* More spacing */
-      }
-
-      .footer-col ul li a {
-        color: var(--color-text-secondary);
-        display: block;
-        transition: color 0.3s ease, padding-left 0.3s ease;
-      }
-
-      .footer-col ul li a:hover {
-        color: var(--color-accent-1);
-        padding-left: 8px; /* More pronounced hover effect */
-      }
-
-      .social-links a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 45px; /* Larger social icons */
-        width: 45px;
-        background-color: var(--color-border);
-        margin: 0 12px 12px 0;
-        text-align: center;
-        border-radius: 50%;
-        color: var(--color-text-primary);
-        transition: all 0.3s ease;
-      }
-
-      .social-links a:hover {
-        color: #fff;
-        background: linear-gradient(
-          45deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
-        );
-      }
-
-      .footer-bottom {
-        text-align: center;
-        margin-top: 50px;
-        padding-top: 25px;
-        border-top: 1px solid var(--color-border);
-      }
-
-      /* Mobile Menu Overlay */
-      .mobile-menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: var(--color-overlay);
-        backdrop-filter: blur(10px); /* Stronger blur */
-        z-index: 1001;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
-      }
-
-      .mobile-menu-overlay.active {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .mobile-nav-menu {
-        list-style: none;
-        text-align: center;
-      }
-
-      .mobile-nav-menu li {
-        margin-bottom: 35px; /* More spacing */
-      }
-
-      .mobile-nav-menu a {
-        font-family: var(--font-display);
-        font-size: 2.5rem; /* Larger mobile links */
-        font-weight: 700; /* Stronger mobile links */
-        color: var(--color-text-primary);
-        transition: color 0.3s ease;
-      }
-
-      .mobile-nav-menu a:hover {
-        color: var(--color-accent-1);
-      }
-
-      .close-menu-btn {
-        position: absolute;
-        top: 40px; /* More space from top */
-        right: 40px;
-        font-size: 3rem; /* Larger close button */
-        color: var(--color-text-primary);
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-
-      .close-menu-btn:hover {
-        color: var(--color-accent-1);
-      }
-
-      /* Scroll Reveal Animations */
-      .reveal {
-        opacity: 0;
-        transform: translateY(60px); /* More pronounced initial transform */
-        transition: opacity 1s ease-out, transform 1s ease-out; /* Slower, smoother animation */
-      }
-
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Responsive Design */
-      @media (max-width: 992px) {
-        .nav-menu,
-        .nav-icons {
-          display: none;
-        }
-
-        .hamburger-menu {
-          display: block;
-        }
-
-        .hero-content h1 {
-          font-size: 4rem;
-        }
-
-        .hero-content p {
-          font-size: 1.3rem;
-        }
-
-        .section-heading {
-          font-size: 2.5rem;
-        }
-
-        .category-grid,
-        .product-grid {
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        .footer .container {
-          justify-content: center;
-          text-align: center;
-        }
-
-        .footer-col {
-          min-width: 100%;
-        }
-
-        .footer-col h4::after {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-
-        .social-links {
-          display: flex;
-          justify-content: center;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .hero-content h1 {
-          font-size: 3.2rem;
-        }
-
-        .hero-content p {
-          font-size: 1.1rem;
-        }
-
-        .hero-buttons .btn {
-          display: block;
-          margin: 20px auto;
-        }
-
-        .section-heading {
-          font-size: 2.2rem;
-        }
-
-        .cta-section h2 {
-          font-size: 3rem;
-        }
-
-        .cta-section p {
-          font-size: 1.1rem;
-        }
-
-        .category-card,
-        .product-card {
-          padding: 30px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .header .container {
-          padding: 0 20px;
-        }
-
-        .logo {
-          font-size: 1.8rem;
-        }
-
-        .hero-content h1 {
-          font-size: 2.5rem;
-        }
-
-        .hero-content p {
-          font-size: 1rem;
-        }
-
-        .section-heading {
-          font-size: 1.8rem;
-          margin-bottom: 30px;
-        }
-
-        .section-heading::after {
-          bottom: -10px;
-          width: 60px;
-          height: 3px;
-        }
-
-        .cta-section h2 {
-          font-size: 2.5rem;
-        }
-
-        .cta-section p {
-          font-size: 0.95rem;
-        }
-
-        .btn {
-          padding: 12px 24px;
-          font-size: 0.95rem;
-        }
-
-        .mobile-nav-menu li {
-          margin-bottom: 25px;
-        }
-
-        .mobile-nav-menu a {
-          font-size: 2rem;
-        }
-
-        .close-menu-btn {
-          top: 25px;
-          right: 25px;
-          font-size: 2.5rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    Header
-    <header class="header">
-      <div class="container">
-        <div class="logo">AETHERIA</div>
-        <nav>
-          <ul class="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-        <div class="nav-icons">
-          <i class="fas fa-search"></i>
-          <i class="fas fa-user"></i>
-          <i class="fas fa-shopping-cart"></i>
-        </div>
-        <div class="hamburger-menu" id="hamburger-menu">
-          <i class="fas fa-bars"></i>
-        </div>
-      </div>
-    </header>
-
-
-    <!-- <div class="mobile-menu-overlay" id="mobile-menu-overlay">
-      <i class="fas fa-times close-menu-btn" id="close-menu-btn"></i>
-      <ul class="mobile-nav-menu">
-        <li><a href="#home">Homie</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div> -->
-
-    <!-- Hero Section -->
-    <!-- <section class="hero-section" id="home">
-      <div class="hero-background"></div>
-      <div class="hero-content reveal">
-        <h1>Experience Tomorrow, Today.</h1>
-        <p>
-          Discover cutting-edge technology and fashion that redefines the
-          future. Unleash your potential with Aetheria.
-        </p>
-        <div class="hero-buttons">
-          <a href="#products" class="btn btn-primary">Shop Now</a>
-          <a href="#about" class="btn btn-secondary">Learn More</a>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- Product Categories Section -->
-    <!-- <section class="categories-section" id="categories">
-      <div class="container">
-        <h2 class="section-heading text-center reveal">Explore Categories</h2>
-        <div class="category-grid">
-          <div class="category-card reveal">
-            <i class="fas fa-robot"></i>
-            <h3>AI & Robotics</h3>
-            <p>Intelligent companions and automated solutions.</p>
-          </div>
-          <div class="category-card reveal">
-            <i class="fas fa-microchip"></i>
-            <h3>Wearable Tech</h3>
-            <p>Seamless integration of technology into your lifestyle.</p>
-          </div>
-          <div class="category-card reveal">
-            <i class="fas fa-tshirt"></i>
-            <h3>Bio-Fashion</h3>
-            <p>Sustainable and adaptive apparel for the modern era.</p>
-          </div>
-          <div class="category-card reveal">
-            <i class="fas fa-vr-cardboard"></i>
-            <h3>Immersive Reality</h3>
-            <p>Step into new dimensions with our VR/AR gear.</p>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- Featured Products Section -->
-    <!-- <section class="featured-products-section" id="products">
-      <div class="container">
-        <h2 class="section-heading text-center reveal">Featured Products</h2>
-        <div class="product-grid">
-          <div class="product-card reveal">
-            <div class="product-card-image">
-              <img
-                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Product 1"
-              />
-            </div>
-            <div class="product-card-content">
-              <h3>Quantum Earbuds</h3>
-              <p>$299.99</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-          </div>
-          <div class="product-card reveal">
-            <div class="product-card-image">
-              <img
-                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Product 2"
-              />
-            </div>
-            <div class="product-card-content">
-              <h3>Aetheria Smartwatch</h3>
-              <p>$449.99</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-          </div>
-          <div class="product-card reveal">
-            <div class="product-card-image">
-              <img
-                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Product 3"
-              />
-            </div>
-            <div class="product-card-content">
-              <h3>Holo-Projector</h3>
-              <p>$799.99</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-          </div>
-          <div class="product-card reveal">
-            <div class="product-card-image">
-              <img
-                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Product 4"
-              />
-            </div>
-            <div class="product-card-content">
-              <h3>Neural Interface</h3>
-              <p>$1299.99</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-          </div>
-          <div class="product-card reveal">
-            <div class="product-card-image">
-              <img
-                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Product 5"
-              />
-            </div>
-            <div class="product-card-content">
-              <h3>Neural Interface 2</h3>
-              <p>$10299.99</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-          </div>
-          <div class="product-card reveal">
-            <div class="product-card-image">
-              <img
-                src="https://images.unsplash.com/photo-1542393545-10f5cde2c810?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Product 6"
-              />
-            </div>
-            <div class="product-card-content">
-              <h3>Neural Interface 3</h3>
-              <p>$7299.99</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!- Call to Action Section -->
-    <!-- <section class="cta-section reveal" id="contact">
-      <div class="container">
-        <h2>Join the Future.</h2>
-        <p>
-          Sign up for exclusive access to new product launches, special offers,
-          and insights into the world of tomorrow.
-        </p>
-        <a href="#" class="btn btn-secondary">Sign Up Now</a>
-      </div>
-    </section> -->
-
-
-    <!-- Footer -->
-    <!-- <footer class="footer">
-      <div class="container">
-        <div class="footer-col">
-          <h4>AETHERIA</h4>
-          <ul>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#">Our Vision</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Press</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="#products">All Products</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Sale</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Shipping & Returns</a></li>
-            <li><a href="#">Warranty</a></li>
-            <li><a href="#">Contact Support</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Follow Us</h4>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Aetheria. All Rights Reserved.</p>
-      </div>
-    </footer>
-
-    <script>
-      // Mobile Menu Toggle
-      const hamburgerMenu = document.getElementById("hamburger-menu");
-      const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
-      const closeMenuBtn = document.getElementById("close-menu-btn");
-      const mobileNavLinks = document.querySelectorAll(".mobile-nav-menu a");
-
-      hamburgerMenu.addEventListener("click", () => {
-        mobileMenuOverlay.classList.add("active");
-        document.body.style.overflow = "hidden"; // Prevent scrolling when menu is open
-      });
-
-      closeMenuBtn.addEventListener("click", () => {
-        mobileMenuOverlay.classList.remove("active");
-        document.body.style.overflow = ""; // Restore scrolling
-      });
-
-      mobileNavLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenuOverlay.classList.remove("active");
-          document.body.style.overflow = "";
-        });
-      });
-
-      // Scroll Reveal Animation
-      const revealElements = document.querySelectorAll(".reveal");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            } else {
-              // Optional: remove 'active' class when out of view to re-trigger on scroll back
-              // entry.target.classList.remove('active');
-            }
-          });
-        },
-        {
-          threshold: 0.1, // Trigger when 10% of the element is visible
-          rootMargin: "0px 0px -50px 0px", // Adjust trigger point
-        }
-      );
-
-      revealElements.forEach((el) => observer.observe(el));
-
-      // Smooth scrolling for anchor links (optional, as scroll-behavior: smooth is in CSS)
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
-        });
-      });
-    </script>
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPA/Rego Reference Tables</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <style>
         * {
             margin: 0;
@@ -1313,630 +236,826 @@
             }
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="tables-container">
-        <div class="header">
-            <h1><i class="bi bi-code-slash"></i> OPA & Rego Language Reference</h1>
-            <p>Comprehensive guide to Open Policy Agent (OPA) and Rego language concepts, syntax, and best practices</p>
-        </div>
+      <div class="header">
+        <h1><i class="bi bi-code-slash"></i> OPA & Rego Language Reference</h1>
+        <p>Comprehensive guide to Open Policy Agent (OPA) and Rego language
+          concepts, syntax, and best practices</p>
+      </div>
 
-        <!-- Table 1 -->
-        <div class="table-card">
-            <div class="table-header">
-                <h2><i class="bi bi-table"></i> Table 1: OPA & Rego Language Basics</h2>
-            </div>
-            <div class="table-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th width="15%">Category</th>
-                            <th width="20%">Feature/Concept</th>
-                            <th width="30%">Syntax/Example</th>
-                            <th width="35%">Description/Why</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="category-cell">OPA Basics</td>
-                            <td class="feature-cell">What is OPA?</td>
-                            <td class="syntax-cell">N/A (Conceptual)</td>
-                            <td class="description-cell">Open-source, general-purpose policy engine. Decouples policy decision-making from policy enforcement.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Core Concepts</td>
-                            <td class="syntax-cell">Policy, Data (Base/Virtual/Input), Query, Decision</td>
-                            <td class="description-cell">Fundamental elements of OPA's operation.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Rego Language</td>
-                            <td class="feature-cell">package</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>package main</div>
-                                <div class="code-block"><i>#</i>package spacelift.plan_policy</div>
-                            </td>
-                            <td class="description-cell">Defines a namespace for the policy. Organizes policies and prevents naming conflicts.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">import</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>import data.users</div>
-                                <div class="code-block"><i>#</i>import data.acl as user_acl</div>
-                                <div class="code-block"><i>#</i>import input.user.id</div>
-                            </td>
-                            <td class="description-cell">References rules/data from other packages or specific data paths. Promotes modularity and reusability.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Variables</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>user := input.name</div>
-                                <div class="code-block"><i>#</i>is_valid := (status == "active")</div>
-                                <div class="code-block"><i>#</i>count = 5</div>
-                            </td>
-                            <td class="description-cell"><span class="highlight">:=</span> (assignment), <span class="highlight">=</span> (unification/comparison). Immutable once assigned in scope. Rego infers types.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Special Variables</td>
-                            <td class="syntax-cell">input, data, _ (wildcard)</td>
-                            <td class="description-cell">
-                                <span class="highlight">input</span>: The document provided with the query.<br>
-                                <span class="highlight">data</span>: Base and virtual documents loaded into OPA.<br>
-                                <span class="highlight">_</span>: Ignores a value.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Data Types</td>
-                            <td class="syntax-cell">
-                                <span class="badge badge-primary">Strings</span> "abc", 'xyz'<br>
-                                <span class="badge badge-primary">Numbers</span> 10, 3.14<br>
-                                <span class="badge badge-primary">Booleans</span> true, false<br>
-                                <span class="badge badge-primary">Null</span> null<br>
-                                <span class="badge badge-primary">Arrays</span> [1, "a"]<br>
-                                <span class="badge badge-primary">Objects</span> {"key": "val"}<br>
-                                <span class="badge badge-primary">Sets</span> {"a", "b"}
-                            </td>
-                            <td class="description-cell">Standard JSON types. Sets are unordered collections of unique primitive values.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Rego Rules</td>
-                            <td class="feature-cell">Complete (Boolean)</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>allow { input.method == "GET" }</div>
-                            </td>
-                            <td class="description-cell">Defines a boolean outcome. Rule is <span class="highlight">true</span> if its body (all expressions) is <span class="highlight">true</span>. Used for simple allow/deny decisions.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Complete (Value)</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>user_role := "guest" { not input.user.roles }</div>
-                                <div class="code-block"><i>#</i>max_retries = 5</div>
-                            </td>
-                            <td class="description-cell">Assigns a single value to the rule. If multiple definitions can be true, the rule becomes a set of those values.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Partial (Set Gen.)</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>violations[msg] { input.x < 0; msg := "x is negative" }</div>
-                            </td>
-                            <td class="description-cell">Generates a set of values. Rule head <span class="highlight">rule_name[key]</span> means <span class="highlight">rule_name</span> will be a set where <span class="highlight">key</span> is each item. For collecting multiple results.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Partial (Obj Gen.)</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>user_details := {"name": n, "id": i} { n := ...; i := ... }</div>
-                            </td>
-                            <td class="description-cell">Generates an object. Rule head <span class="highlight">rule_name := {k1:v1, ...}</span>. For constructing structured data outputs.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">default Keyword</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>default allow = false</div>
-                                <div class="code-block"><i>#</i>default user_level = 0</div>
-                            </td>
-                            <td class="description-cell">Provides a default value for a rule if none of its other definitions are true. Crucial for deny-by-default or ensuring a value always exists.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Rule Body</td>
-                            <td class="syntax-cell">{ <expression1>; <expression2> }</td>
-                            <td class="description-cell">Contains one or more expressions. All must be true (logical AND) for the rule to be true. Order usually doesn't matter for correctness.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">else Keyword</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>p { cond1 } else { cond2 } else = default_val</div>
-                            </td>
-                            <td class="description-cell">Defines alternative conditions if a preceding rule body is false. Provides structured fallback logic.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Rego Ops</td>
-                            <td class="feature-cell">Comparison</td>
-                            <td class="syntax-cell">==, !=, <, >, <=, >=</td>
-                            <td class="description-cell">Standard comparison operators.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Assignment/Unif.</td>
-                            <td class="syntax-cell">:= (assignment), = (unification)</td>
-                            <td class="description-cell"><span class="highlight">:=</span> strictly assigns. <span class="highlight">=</span> asserts equality or binds variables.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Membership</td>
-                            <td class="syntax-cell">val in collection, key in object</td>
-                            <td class="description-cell">Checks if an element is in an array/set, or if a key exists in an object.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Arithmetic</td>
-                            <td class="syntax-cell">+, -, *, /, %</td>
-                            <td class="description-cell">Standard arithmetic operations.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Logical not</td>
-                            <td class="syntax-cell">not input.is_admin</td>
-                            <td class="description-cell">Negates an expression.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Rego Control</td>
-                            <td class="feature-cell">Iteration</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>item := array[_]</div>
-                                <div class="code-block"><i>#</i>val := object[key]</div>
-                                <div class="code-block"><i>#</i>elem := set_elements[_]</div>
-                            </td>
-                            <td class="description-cell">Loops over arrays (values via _), objects (keys via key var, then access object[key]), or sets (values via _).</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Functions (User)</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>is_valid_user(user) { user.active }</div>
-                                <div class="code-block"><i>#</i>allow { is_valid_user(input.user) }</div>
-                            </td>
-                            <td class="description-cell">Reusable logic blocks that take arguments. Improves policy organization and reduces redundancy.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Built-in Functions</td>
-                            <td class="syntax-cell">
-                                count(array), sprintf(format, args), object.get(obj, key, def)
-                            </td>
-                            <td class="description-cell">Rich library for common operations (strings, arrays, objects, types, encoding, time, crypto, HTTP, regex). Refer to OPA docs for full list.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Comprehensions</td>
-                            <td class="syntax-cell">
-                                Array: [term | body]<br>
-                                Set: {term | body}<br>
-                                Object: {key:val | body}
-                            </td>
-                            <td class="description-cell">Concise way to build arrays, sets, or objects based on iteration and conditions.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">with Keyword</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>allow with input.user.role as "admin"</div>
-                                <div class="code-block"><i>#</i>data.servers[_] with data.ports as mock_ports</div>
-                            </td>
-                            <td class="description-cell">Temporarily replaces parts of data or input for a specific evaluation. Essential for testing and "what-if" scenarios.</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <!-- Table 1 -->
+      <div class="table-card">
+        <div class="table-header">
+          <h2><i class="bi bi-table"></i> Table 1: OPA & Rego Language
+            Basics</h2>
+        </div>
+        <div class="table-content">
+          <table>
+            <thead>
+              <tr>
+                <th width="15%">Category</th>
+                <th width="20%">Feature/Concept</th>
+                <th width="30%">Syntax/Example</th>
+                <th width="35%">Description/Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="category-cell">OPA Basics</td>
+                <td class="feature-cell">What is OPA?</td>
+                <td class="syntax-cell">N/A (Conceptual)</td>
+                <td class="description-cell">Open-source, general-purpose policy
+                  engine. Decouples policy decision-making from policy
+                  enforcement.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Core Concepts</td>
+                <td class="syntax-cell">Policy, Data (Base/Virtual/Input),
+                  Query, Decision</td>
+                <td class="description-cell">Fundamental elements of OPA's
+                  operation.</td>
+              </tr>
+              <tr>
+                <td class="category-cell">Rego Language</td>
+                <td class="feature-cell">package</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>package main</div>
+                  <div class="code-block"><i>#</i>package
+                    spacelift.plan_policy</div>
+                </td>
+                <td class="description-cell">Defines a namespace for the policy.
+                  Organizes policies and prevents naming conflicts.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">import</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>import data.users</div>
+                  <div class="code-block"><i>#</i>import data.acl as
+                    user_acl</div>
+                  <div class="code-block"><i>#</i>import input.user.id</div>
+                </td>
+                <td class="description-cell">References rules/data from other
+                  packages or specific data paths. Promotes modularity and
+                  reusability.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Variables</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>user := input.name</div>
+                  <div class="code-block"><i>#</i>is_valid := (status ==
+                    "active")</div>
+                  <div class="code-block"><i>#</i>count = 5</div>
+                </td>
+                <td class="description-cell"><span class="highlight">:=</span>
+                  (assignment), <span class="highlight">=</span>
+                  (unification/comparison). Immutable once assigned in scope.
+                  Rego infers types.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Special Variables</td>
+                <td class="syntax-cell">input, data, _ (wildcard)</td>
+                <td class="description-cell">
+                  <span class="highlight">input</span>: The document provided
+                  with the query.<br>
+                  <span class="highlight">data</span>: Base and virtual
+                  documents loaded into OPA.<br>
+                  <span class="highlight">_</span>: Ignores a value.
+                </td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Data Types</td>
+                <td class="syntax-cell">
+                  <span class="badge badge-primary">Strings</span> "abc",
+                  'xyz'<br>
+                  <span class="badge badge-primary">Numbers</span> 10, 3.14<br>
+                  <span class="badge badge-primary">Booleans</span> true,
+                  false<br>
+                  <span class="badge badge-primary">Null</span> null<br>
+                  <span class="badge badge-primary">Arrays</span> [1, "a"]<br>
+                  <span class="badge badge-primary">Objects</span> {"key":
+                  "val"}<br>
+                  <span class="badge badge-primary">Sets</span> {"a", "b"}
+                </td>
+                <td class="description-cell">Standard JSON types. Sets are
+                  unordered collections of unique primitive values.</td>
+              </tr>
+              <tr>
+                <td class="category-cell">Rego Rules</td>
+                <td class="feature-cell">Complete (Boolean)</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>allow { input.method == "GET"
+                    }</div>
+                </td>
+                <td class="description-cell">Defines a boolean outcome. Rule is
+                  <span class="highlight">true</span> if its body (all
+                  expressions) is <span class="highlight">true</span>. Used for
+                  simple allow/deny decisions.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Complete (Value)</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>user_role := "guest" { not
+                    input.user.roles }</div>
+                  <div class="code-block"><i>#</i>max_retries = 5</div>
+                </td>
+                <td class="description-cell">Assigns a single value to the rule.
+                  If multiple definitions can be true, the rule becomes a set of
+                  those values.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Partial (Set Gen.)</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>violations[msg] { input.x < 0;
+                    msg := "x is negative" }</div>
+                </td>
+                <td class="description-cell">Generates a set of values. Rule
+                  head <span class="highlight">rule_name[key]</span> means <span
+                    class="highlight">rule_name</span> will be a set where <span
+                    class="highlight">key</span> is each item. For collecting
+                  multiple results.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Partial (Obj Gen.)</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>user_details := {"name": n,
+                    "id": i} { n := ...; i := ... }</div>
+                </td>
+                <td class="description-cell">Generates an object. Rule head
+                  <span class="highlight">rule_name := {k1:v1, ...}</span>. For
+                  constructing structured data outputs.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">default Keyword</td>
+                <td class="syntax-cell">
+                  <div class="code-block"><i>#</i>default allow = false</div>
+                  <div class="code-block"><i>#</i>default user_level = 0</div>
+                </td>
+                <td class="description-cell">Provides a default value for a rule
+                  if none of its other definitions are true. Crucial for
+                  deny-by-default or ensuring a value always exists.</td>
+              </tr>
+              <tr>
+                <td class="category-cell"></td>
+                <td class="feature-cell">Rule Body</td>
+                <td class="syntax-cell">{ <expression1>; <expression2> }</td>
+                    <td class="description-cell">Contains one or more
+                      expressions. All must be true (logical AND) for the rule
+                      to be true. Order usually doesn't matter for
+                      correctness.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">else Keyword</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>p { cond1 } else { cond2 }
+                        else = default_val</div>
+                    </td>
+                    <td class="description-cell">Defines alternative conditions
+                      if a preceding rule body is false. Provides structured
+                      fallback logic.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Rego Ops</td>
+                    <td class="feature-cell">Comparison</td>
+                    <td class="syntax-cell">==, !=, <, >, <=, >=</td>
+                    <td class="description-cell">Standard comparison
+                      operators.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Assignment/Unif.</td>
+                    <td class="syntax-cell">:= (assignment), =
+                      (unification)</td>
+                    <td class="description-cell"><span
+                        class="highlight">:=</span> strictly assigns. <span
+                        class="highlight">=</span> asserts equality or binds
+                      variables.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Membership</td>
+                    <td class="syntax-cell">val in collection, key in
+                      object</td>
+                    <td class="description-cell">Checks if an element is in an
+                      array/set, or if a key exists in an object.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Arithmetic</td>
+                    <td class="syntax-cell">+, -, *, /, %</td>
+                    <td class="description-cell">Standard arithmetic
+                      operations.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Logical not</td>
+                    <td class="syntax-cell">not input.is_admin</td>
+                    <td class="description-cell">Negates an expression.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Rego Control</td>
+                    <td class="feature-cell">Iteration</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>item := array[_]</div>
+                      <div class="code-block"><i>#</i>val := object[key]</div>
+                      <div class="code-block"><i>#</i>elem :=
+                        set_elements[_]</div>
+                    </td>
+                    <td class="description-cell">Loops over arrays (values via
+                      _), objects (keys via key var, then access object[key]),
+                      or sets (values via _).</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Functions (User)</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>is_valid_user(user) {
+                        user.active }</div>
+                      <div class="code-block"><i>#</i>allow {
+                        is_valid_user(input.user) }</div>
+                    </td>
+                    <td class="description-cell">Reusable logic blocks that take
+                      arguments. Improves policy organization and reduces
+                      redundancy.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Built-in Functions</td>
+                    <td class="syntax-cell">
+                      count(array), sprintf(format, args), object.get(obj, key,
+                      def)
+                    </td>
+                    <td class="description-cell">Rich library for common
+                      operations (strings, arrays, objects, types, encoding,
+                      time, crypto, HTTP, regex). Refer to OPA docs for full
+                      list.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Comprehensions</td>
+                    <td class="syntax-cell">
+                      Array: [term | body]<br>
+                      Set: {term | body}<br>
+                      Object: {key:val | body}
+                    </td>
+                    <td class="description-cell">Concise way to build arrays,
+                      sets, or objects based on iteration and conditions.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">with Keyword</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>allow with input.user.role
+                        as "admin"</div>
+                      <div class="code-block"><i>#</i>data.servers[_] with
+                        data.ports as mock_ports</div>
+                    </td>
+                    <td class="description-cell">Temporarily replaces parts of
+                      data or input for a specific evaluation. Essential for
+                      testing and "what-if" scenarios.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="table-footer">
-                <i class="bi bi-info-circle"></i>
-                <div>OPA is an open-source, general-purpose policy engine that enables unified, context-aware policy enforcement across the stack</div>
+              <i class="bi bi-info-circle"></i>
+              <div>OPA is an open-source, general-purpose policy engine that
+                enables unified, context-aware policy enforcement across the
+                stack</div>
             </div>
-        </div>
+          </div>
 
-        <!-- Table 2 -->
-        <div class="table-card">
+          <!-- Table 2 -->
+          <div class="table-card">
             <div class="table-header">
-                <h2><i class="bi bi-table"></i> Table 2: Writing & Testing OPA Policies</h2>
+              <h2><i class="bi bi-table"></i> Table 2: Writing & Testing OPA
+                Policies</h2>
             </div>
             <div class="table-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th width="15%">Category</th>
-                            <th width="20%">Feature/Concept</th>
-                            <th width="30%">Syntax/Example</th>
-                            <th width="35%">Description/Why</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="category-cell">Policy Writing</td>
-                            <td class="feature-cell">Allow/Deny Structure</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>default allow = false</div>
-                                <div class="code-block"><i>#</i>allow { condition1 }</div>
-                                <div class="code-block"><i>#</i>allow { condition2 }</div>
-                            </td>
-                            <td class="description-cell">Common pattern: deny by default, explicitly define conditions for allow. Multiple allow rules act as OR.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Violation Messages</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>deny[msg] { condition; msg := "Error: ..." }</div>
-                                <div class="code-block"><i>#</i>Query: data.package.deny</div>
-                            </td>
-                            <td class="description-cell">Instead of boolean, return a set of messages detailing reasons for denial. More informative for users/systems.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Working with input</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.request.user.id</div>
-                                <div class="code-block"><i>#</i>input["resource-type"]</div>
-                                <div class="code-block"><i>#</i>object.get(input, "optional_field", default_val)</div>
-                            </td>
-                            <td class="description-cell">input is the query data. Access nested fields. Use object.get for safe access to potentially missing fields.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Policy Modularity</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>File 1: package common.utils</div>
-                                <div class="code-block"><i>#</i>File 2: package app.policy; import data.common.utils</div>
-                            </td>
-                            <td class="description-cell">Break complex policies into smaller files/packages. Use import to combine logic for better organization and reusability.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Testing Policies</td>
-                            <td class="feature-cell">opa test Command</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>$</i>opa test . -v</div>
-                                <div class="code-block"><i>$</i>opa test ./policies/ --coverage</div>
-                            </td>
-                            <td class="description-cell">Command-line tool to run tests. -v for verbose output. --coverage for test coverage report.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Test Files (_test.rego)</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>package mypolicy # Same package or import</div>
-                                <div class="code-block"><i>#</i>test_my_rule_passes { mypolicy.my_rule with input as ... }</div>
-                            </td>
-                            <td class="description-cell">Test rules start with test_. Typically in files ending with _test.rego. Use with to mock input and data.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Assertions</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>test_is_true { rule_being_tested }</div>
-                                <div class="code-block"><i>#</i>test_is_false { not rule_being_tested }</div>
-                                <div class="code-block"><i>#</i>test_value { res := rule; res == "expected" }</div>
-                            </td>
-                            <td class="description-cell">Test passes if the test rule evaluates to true. For specific value checks, assign rule output and compare.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">trace() for Debugging</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>trace(sprintf("Value: %v", [my_var]))</div>
-                            </td>
-                            <td class="description-cell">Prints messages to stderr during evaluation. Useful for debugging complex rules within tests or during development.</td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th width="15%">Category</th>
+                    <th width="20%">Feature/Concept</th>
+                    <th width="30%">Syntax/Example</th>
+                    <th width="35%">Description/Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="category-cell">Policy Writing</td>
+                    <td class="feature-cell">Allow/Deny Structure</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>default allow =
+                        false</div>
+                      <div class="code-block"><i>#</i>allow { condition1 }</div>
+                      <div class="code-block"><i>#</i>allow { condition2 }</div>
+                    </td>
+                    <td class="description-cell">Common pattern: deny by
+                      default, explicitly define conditions for allow. Multiple
+                      allow rules act as OR.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Violation Messages</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>deny[msg] { condition; msg
+                        := "Error: ..." }</div>
+                      <div class="code-block"><i>#</i>Query:
+                        data.package.deny</div>
+                    </td>
+                    <td class="description-cell">Instead of boolean, return a
+                      set of messages detailing reasons for denial. More
+                      informative for users/systems.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Working with input</td>
+                    <td class="syntax-cell">
+                      <div
+                        class="code-block"><i>#</i>input.request.user.id</div>
+                      <div
+                        class="code-block"><i>#</i>input["resource-type"]</div>
+                      <div class="code-block"><i>#</i>object.get(input,
+                        "optional_field", default_val)</div>
+                    </td>
+                    <td class="description-cell">input is the query data. Access
+                      nested fields. Use object.get for safe access to
+                      potentially missing fields.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Policy Modularity</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>File 1: package
+                        common.utils</div>
+                      <div class="code-block"><i>#</i>File 2: package
+                        app.policy; import data.common.utils</div>
+                    </td>
+                    <td class="description-cell">Break complex policies into
+                      smaller files/packages. Use import to combine logic for
+                      better organization and reusability.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Testing Policies</td>
+                    <td class="feature-cell">opa test Command</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>$</i>opa test . -v</div>
+                      <div class="code-block"><i>$</i>opa test ./policies/
+                        --coverage</div>
+                    </td>
+                    <td class="description-cell">Command-line tool to run tests.
+                      -v for verbose output. --coverage for test coverage
+                      report.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Test Files (_test.rego)</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>package mypolicy # Same
+                        package or import</div>
+                      <div class="code-block"><i>#</i>test_my_rule_passes {
+                        mypolicy.my_rule with input as ... }</div>
+                    </td>
+                    <td class="description-cell">Test rules start with test_.
+                      Typically in files ending with _test.rego. Use with to
+                      mock input and data.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Assertions</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>test_is_true {
+                        rule_being_tested }</div>
+                      <div class="code-block"><i>#</i>test_is_false { not
+                        rule_being_tested }</div>
+                      <div class="code-block"><i>#</i>test_value { res := rule;
+                        res == "expected" }</div>
+                    </td>
+                    <td class="description-cell">Test passes if the test rule
+                      evaluates to true. For specific value checks, assign rule
+                      output and compare.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">trace() for Debugging</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>trace(sprintf("Value: %v",
+                        [my_var]))</div>
+                    </td>
+                    <td class="description-cell">Prints messages to stderr
+                      during evaluation. Useful for debugging complex rules
+                      within tests or during development.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="table-footer">
-                <i class="bi bi-lightbulb"></i>
-                <div>Tip: Use the opa test command with mock input JSON files that replicate Spacelift's data for robust testing</div>
+              <i class="bi bi-lightbulb"></i>
+              <div>Tip: Use the opa test command with mock input JSON files that
+                replicate Spacelift's data for robust testing</div>
             </div>
-        </div>
+          </div>
 
-        <!-- Table 3 -->
-        <div class="table-card">
+          <!-- Table 3 -->
+          <div class="table-card">
             <div class="table-header">
-                <h2><i class="bi bi-table"></i> Table 3: OPA in Spacelift</h2>
+              <h2><i class="bi bi-table"></i> Table 3: OPA in Spacelift</h2>
             </div>
             <div class="table-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th width="15%">Category</th>
-                            <th width="20%">Feature/Concept</th>
-                            <th width="30%">Description/Why</th>
-                            <th width="35%">Example input Snippet / Key Decision Rules</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="category-cell">Policy Types</td>
-                            <td class="feature-cell">Plan Policies</td>
-                            <td class="description-cell">Evaluated after terraform plan (or equivalent). Inspects resource changes for standards, security, cost.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.spacelift.terraform.resource_changes</div>
-                                <div class="code-block"><i>#</i>Decision Rules: approve, deny, warn</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Approval Policies</td>
-                            <td class="description-cell">Determines if a run requires manual approval based on conditions (e.g., prod changes, specific user).</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.spacelift.run.user</div>
-                                <div class="code-block"><i>#</i>input.spacelift.stack.labels</div>
-                                <div class="code-block"><i>#</i>Decision Rules: approve_manually, approve_automatically</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Trigger Policies</td>
-                            <td class="description-cell">Controls automated run triggering based on events (e.g., Git push to branch, path changes).</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.spacelift.git</div>
-                                <div class="code-block"><i>#</i>input.spacelift.stack</div>
-                                <div class="code-block"><i>#</i>Decision Rule: trigger</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Push Policies (Git Push)</td>
-                            <td class="description-cell">Evaluated when code is pushed to VCS. Prevents merging code violating policies early.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.spacelift.git.commit</div>
-                                <div class="code-block"><i>#</i>input.spacelift.git.changed_files</div>
-                                <div class="code-block"><i>#</i>Decision Rules: deny, warn (for merge prevention)</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Task Policies (Custom Commands)</td>
-                            <td class="description-cell">Governs arbitrary commands run within Spacelift's workflow.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.spacelift.task.command</div>
-                                <div class="code-block"><i>#</i>input.spacelift.run</div>
-                                <div class="code-block"><i>#</i>Decision Rules: approve, deny</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Login Policies</td>
-                            <td class="description-cell">Controls who can log in to Spacelift.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>input.identity_provider.claims (e.g., groups, email)</div>
-                                <div class="code-block"><i>#</i>Decision Rule: allow</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Input Structure</td>
-                            <td class="feature-cell">Common Spacelift input (Conceptual)</td>
-                            <td class="description-cell">Spacelift provides a structured JSON input document specific to each policy type.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>{"spacelift": {"run": {...}, "stack": {...}, "terraform": {"resource_changes": [...]}}}</div>
-                                <div>(Always check Spacelift docs for exact schema)</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Example Policies</td>
-                            <td class="feature-cell">Plan Policy: S3 Versioning</td>
-                            <td class="description-cell">Denies S3 buckets without versioning enabled when created or updated.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>package spacelift</div>
-                                <div class="code-block"><i>#</i>deny[reason] { </div>
-                                <div class="code-block"><i>#</i>  change := input.spacelift.terraform.resource_changes[_]; </div>
-                                <div class="code-block"><i>#</i>  change.type == "aws_s3_bucket"; </div>
-                                <div class="code-block"><i>#</i>  not change.change.actions[_] == "delete"; </div>
-                                <div class="code-block"><i>#</i>  not object.get(change.change.after, "versioning", {}).enabled == true; </div>
-                                <div class="code-block"><i>#</i>  reason := sprintf("S3 bucket '%s' must have versioning enabled.", [change.address]) </div>
-                                <div class="code-block"><i>#</i>}</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Approval Policy: Prod Access</td>
-                            <td class="description-cell">Requires manual approval for changes to production stacks by non-admins.</td>
-                            <td class="syntax-cell">
-                                <div class="code-block"><i>#</i>package spacelift</div>
-                                <div class="code-block"><i>#</i>approve_manually[reason] { </div>
-                                <div class="code-block"><i>#</i>  input.spacelift.stack.labels[_] == "env:prod"; </div>
-                                <div class="code-block"><i>#</i>  not input.spacelift.run.user.role == "admin"; </div>
-                                <div class="code-block"><i>#</i>  reason := "Changes to production by non-admins require manual approval." </div>
-                                <div class="code-block"><i>#</i>}</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Key Considerations</td>
-                            <td class="feature-cell">Input Schema</td>
-                            <td class="description-cell">Crucial to consult Spacelift's official documentation for exact input JSON structures.</td>
-                            <td class="syntax-cell">-</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Decision Rules</td>
-                            <td class="description-cell">Spacelift specifically interprets rules like approve, deny, warn, approve_manually, trigger.</td>
-                            <td class="syntax-cell">-</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Testing</td>
-                            <td class="description-cell">Use opa test with mock input JSON files that replicate Spacelift's data.</td>
-                            <td class="syntax-cell">-</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Modularity</td>
-                            <td class="description-cell">Leverage multiple Rego files and packages for complex policies; Spacelift supports this.</td>
-                            <td class="syntax-cell">-</td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th width="15%">Category</th>
+                    <th width="20%">Feature/Concept</th>
+                    <th width="30%">Description/Why</th>
+                    <th width="35%">Example input Snippet / Key Decision
+                      Rules</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="category-cell">Policy Types</td>
+                    <td class="feature-cell">Plan Policies</td>
+                    <td class="description-cell">Evaluated after terraform plan
+                      (or equivalent). Inspects resource changes for standards,
+                      security, cost.</td>
+                    <td class="syntax-cell">
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.terraform.resource_changes</div>
+                      <div class="code-block"><i>#</i>Decision Rules: approve,
+                        deny, warn</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Approval Policies</td>
+                    <td class="description-cell">Determines if a run requires
+                      manual approval based on conditions (e.g., prod changes,
+                      specific user).</td>
+                    <td class="syntax-cell">
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.run.user</div>
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.stack.labels</div>
+                      <div class="code-block"><i>#</i>Decision Rules:
+                        approve_manually, approve_automatically</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Trigger Policies</td>
+                    <td class="description-cell">Controls automated run
+                      triggering based on events (e.g., Git push to branch, path
+                      changes).</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>input.spacelift.git</div>
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.stack</div>
+                      <div class="code-block"><i>#</i>Decision Rule:
+                        trigger</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Push Policies (Git Push)</td>
+                    <td class="description-cell">Evaluated when code is pushed
+                      to VCS. Prevents merging code violating policies
+                      early.</td>
+                    <td class="syntax-cell">
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.git.commit</div>
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.git.changed_files</div>
+                      <div class="code-block"><i>#</i>Decision Rules: deny, warn
+                        (for merge prevention)</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Task Policies (Custom
+                      Commands)</td>
+                    <td class="description-cell">Governs arbitrary commands run
+                      within Spacelift's workflow.</td>
+                    <td class="syntax-cell">
+                      <div
+                        class="code-block"><i>#</i>input.spacelift.task.command</div>
+                      <div class="code-block"><i>#</i>input.spacelift.run</div>
+                      <div class="code-block"><i>#</i>Decision Rules: approve,
+                        deny</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Login Policies</td>
+                    <td class="description-cell">Controls who can log in to
+                      Spacelift.</td>
+                    <td class="syntax-cell">
+                      <div
+                        class="code-block"><i>#</i>input.identity_provider.claims
+                        (e.g., groups, email)</div>
+                      <div class="code-block"><i>#</i>Decision Rule: allow</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Input Structure</td>
+                    <td class="feature-cell">Common Spacelift input
+                      (Conceptual)</td>
+                    <td class="description-cell">Spacelift provides a structured
+                      JSON input document specific to each policy type.</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>{"spacelift": {"run":
+                        {...}, "stack": {...}, "terraform": {"resource_changes":
+                        [...]}}}</div>
+                      <div>(Always check Spacelift docs for exact schema)</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Example Policies</td>
+                    <td class="feature-cell">Plan Policy: S3 Versioning</td>
+                    <td class="description-cell">Denies S3 buckets without
+                      versioning enabled when created or updated.</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>package spacelift</div>
+                      <div class="code-block"><i>#</i>deny[reason] { </div>
+                      <div class="code-block"><i>#</i> change :=
+                        input.spacelift.terraform.resource_changes[_]; </div>
+                      <div class="code-block"><i>#</i> change.type ==
+                        "aws_s3_bucket"; </div>
+                      <div class="code-block"><i>#</i> not
+                        change.change.actions[_] == "delete"; </div>
+                      <div class="code-block"><i>#</i> not
+                        object.get(change.change.after, "versioning",
+                        {}).enabled == true; </div>
+                      <div class="code-block"><i>#</i> reason :=
+                        sprintf("S3 bucket '%s' must have versioning enabled.",
+                        [change.address]) </div>
+                      <div class="code-block"><i>#</i>}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Approval Policy: Prod Access</td>
+                    <td class="description-cell">Requires manual approval for
+                      changes to production stacks by non-admins.</td>
+                    <td class="syntax-cell">
+                      <div class="code-block"><i>#</i>package spacelift</div>
+                      <div class="code-block"><i>#</i>approve_manually[reason] {
+                      </div>
+                      <div class="code-block"><i>#</i>
+                        input.spacelift.stack.labels[_] == "env:prod"; </div>
+                      <div class="code-block"><i>#</i> not
+                        input.spacelift.run.user.role == "admin"; </div>
+                      <div class="code-block"><i>#</i> reason :=
+                        "Changes to production by non-admins require manual approval."
+                      </div>
+                      <div class="code-block"><i>#</i>}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Key Considerations</td>
+                    <td class="feature-cell">Input Schema</td>
+                    <td class="description-cell">Crucial to consult Spacelift's
+                      official documentation for exact input JSON
+                      structures.</td>
+                    <td class="syntax-cell">-</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Decision Rules</td>
+                    <td class="description-cell">Spacelift specifically
+                      interprets rules like approve, deny, warn,
+                      approve_manually, trigger.</td>
+                    <td class="syntax-cell">-</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Testing</td>
+                    <td class="description-cell">Use opa test with mock input
+                      JSON files that replicate Spacelift's data.</td>
+                    <td class="syntax-cell">-</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Modularity</td>
+                    <td class="description-cell">Leverage multiple Rego files
+                      and packages for complex policies; Spacelift supports
+                      this.</td>
+                    <td class="syntax-cell">-</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="table-footer">
-                <i class="bi bi-shield-check"></i>
-                <div>Spacelift policies enable granular control over infrastructure changes, security, and compliance</div>
+              <i class="bi bi-shield-check"></i>
+              <div>Spacelift policies enable granular control over
+                infrastructure changes, security, and compliance</div>
             </div>
-        </div>
+          </div>
 
-        <!-- Table 4 -->
-        <div class="table-card">
+          <!-- Table 4 -->
+          <div class="table-card">
             <div class="table-header">
-                <h2><i class="bi bi-table"></i> Table 4: Advanced Rego & Best Practices</h2>
+              <h2><i class="bi bi-table"></i> Table 4: Advanced Rego & Best
+                Practices</h2>
             </div>
             <div class="table-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th width="20%">Category</th>
-                            <th width="30%">Feature/Concept</th>
-                            <th width="50%">Description/Why</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="category-cell">Advanced Rego</td>
-                            <td class="feature-cell">Recursive Rules</td>
-                            <td class="description-cell">
-                                <div class="code-block"><i>#</i>is_ancestor(a, b) { parent_of(a, b) }</div>
-                                <div class="code-block"><i>#</i>is_ancestor(a, c) { parent_of(a, b); is_ancestor(b, c) }</div>
-                                <div><span class="highlight">Why?</span> Solves problems like transitive closure.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">every Keyword (or equivalent)</td>
-                            <td class="description-cell">
-                                <div class="code-block"><i>#</i>all_active { every u in data.users { u.status == "active" } }</div>
-                                <div><span class="highlight">Tip:</span> Often implemented with count(violations) == 0 for current OPA versions.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Partial Evaluation</td>
-                            <td class="description-cell">
-                                OPA pre-computes parts of a decision when some data is known at policy load time.
-                                <div><span class="highlight">Tip:</span> Write clear, modular Rego to allow for optimal engine performance.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Best Practices</td>
-                            <td class="feature-cell">Start Simple</td>
-                            <td class="description-cell">
-                                Begin with clear, straightforward rules and build complexity incrementally.
-                                <div><span class="highlight">Tip:</span> Avoid over-engineering initially; focus on core requirements.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Deny by Default</td>
-                            <td class="description-cell">
-                                For authorization policies, it's safer to implicitly deny and explicitly allow.
-                                <div><span class="highlight">Tip:</span> default allow = false is a common and secure pattern.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Descriptive Naming</td>
-                            <td class="description-cell">
-                                Use clear, concise names for packages, rules, and variables.
-                                <div><span class="highlight">Tip:</span> is_s3_encrypted is better than check_s3.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Small, Focused Policies</td>
-                            <td class="description-cell">
-                                Break down large policies into smaller, reusable modules.
-                                <div><span class="highlight">Tip:</span> Use separate files/packages for different policy concerns (e.g., s3_policy, ec2_policy).</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Thorough Testing</td>
-                            <td class="description-cell">
-                                Write comprehensive tests for all policy logic, including edge cases.
-                                <div><span class="highlight">Tip:</span> Use opa test with mocked input and data for robust validation.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Version Control</td>
-                            <td class="description-cell">
-                                Store your policies in a Git repository.
-                                <div><span class="highlight">Tip:</span> Treat policies as code; use branches, pull requests, and commit messages.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Iterate and Refine</td>
-                            <td class="description-cell">
-                                Policy development is often an iterative process of testing and refinement.
-                                <div><span class="highlight">Tip:</span> Don't aim for perfection on the first try; continuously improve policies based on feedback and new requirements.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Use Rego Playground</td>
-                            <td class="description-cell">
-                                Excellent tool for experimenting, debugging, and sharing Rego snippets.
-                                <div><span class="highlight">Tip:</span> play.openpolicyagent.org for quick testing and validation.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Understand input Schema</td>
-                            <td class="description-cell">
-                                Deeply familiarize yourself with the structure of your input data.
-                                <div><span class="highlight">Tip:</span> The exact input schema provided by Spacelift (or your system) is the foundation of effective policies.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Avoid Overly Complex Rules</td>
-                            <td class="description-cell">
-                                If a rule becomes hard to understand or test, refactor it into smaller functions or rules.
-                                <div><span class="highlight">Tip:</span> Prioritize readability and maintainability over single-line "clever" solutions.</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell">Resources</td>
-                            <td class="feature-cell">Official OPA Documentation</td>
-                            <td class="description-cell">The primary and most authoritative source for OPA and Rego.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Spacelift OPA Policy Docs</td>
-                            <td class="description-cell">Specific documentation on Spacelift's input schemas and policy evaluation behavior.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Rego Playground</td>
-                            <td class="description-cell">Online environment for writing, testing, and sharing Rego code.</td>
-                        </tr>
-                        <tr>
-                            <td class="category-cell"></td>
-                            <td class="feature-cell">Community/Forums</td>
-                            <td class="description-cell">Engage with the OPA community for questions and best practices.</td>
-                        </tr>
-                    </tbody>
-                </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th width="20%">Category</th>
+                    <th width="30%">Feature/Concept</th>
+                    <th width="50%">Description/Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="category-cell">Advanced Rego</td>
+                    <td class="feature-cell">Recursive Rules</td>
+                    <td class="description-cell">
+                      <div class="code-block"><i>#</i>is_ancestor(a, b) {
+                        parent_of(a, b) }</div>
+                      <div class="code-block"><i>#</i>is_ancestor(a, c) {
+                        parent_of(a, b); is_ancestor(b, c) }</div>
+                      <div><span class="highlight">Why?</span> Solves problems
+                        like transitive closure.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">every Keyword (or equivalent)</td>
+                    <td class="description-cell">
+                      <div class="code-block"><i>#</i>all_active { every u in
+                        data.users { u.status == "active" } }</div>
+                      <div><span class="highlight">Tip:</span> Often implemented
+                        with count(violations) == 0 for current OPA
+                        versions.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Partial Evaluation</td>
+                    <td class="description-cell">
+                      OPA pre-computes parts of a decision when some data is
+                      known at policy load time.
+                      <div><span class="highlight">Tip:</span> Write clear,
+                        modular Rego to allow for optimal engine
+                        performance.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Best Practices</td>
+                    <td class="feature-cell">Start Simple</td>
+                    <td class="description-cell">
+                      Begin with clear, straightforward rules and build
+                      complexity incrementally.
+                      <div><span class="highlight">Tip:</span> Avoid
+                        over-engineering initially; focus on core
+                        requirements.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Deny by Default</td>
+                    <td class="description-cell">
+                      For authorization policies, it's safer to implicitly deny
+                      and explicitly allow.
+                      <div><span class="highlight">Tip:</span> default allow =
+                        false is a common and secure pattern.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Descriptive Naming</td>
+                    <td class="description-cell">
+                      Use clear, concise names for packages, rules, and
+                      variables.
+                      <div><span class="highlight">Tip:</span> is_s3_encrypted
+                        is better than check_s3.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Small, Focused Policies</td>
+                    <td class="description-cell">
+                      Break down large policies into smaller, reusable modules.
+                      <div><span class="highlight">Tip:</span> Use separate
+                        files/packages for different policy concerns (e.g.,
+                        s3_policy, ec2_policy).</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Thorough Testing</td>
+                    <td class="description-cell">
+                      Write comprehensive tests for all policy logic, including
+                      edge cases.
+                      <div><span class="highlight">Tip:</span> Use opa test with
+                        mocked input and data for robust validation.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Version Control</td>
+                    <td class="description-cell">
+                      Store your policies in a Git repository.
+                      <div><span class="highlight">Tip:</span> Treat policies as
+                        code; use branches, pull requests, and commit
+                        messages.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Iterate and Refine</td>
+                    <td class="description-cell">
+                      Policy development is often an iterative process of
+                      testing and refinement.
+                      <div><span class="highlight">Tip:</span> Don't aim for
+                        perfection on the first try; continuously improve
+                        policies based on feedback and new requirements.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Use Rego Playground</td>
+                    <td class="description-cell">
+                      Excellent tool for experimenting, debugging, and sharing
+                      Rego snippets.
+                      <div><span class="highlight">Tip:</span>
+                        play.openpolicyagent.org for quick testing and
+                        validation.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Understand input Schema</td>
+                    <td class="description-cell">
+                      Deeply familiarize yourself with the structure of your
+                      input data.
+                      <div><span class="highlight">Tip:</span> The exact input
+                        schema provided by Spacelift (or your system) is the
+                        foundation of effective policies.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Avoid Overly Complex Rules</td>
+                    <td class="description-cell">
+                      If a rule becomes hard to understand or test, refactor it
+                      into smaller functions or rules.
+                      <div><span class="highlight">Tip:</span> Prioritize
+                        readability and maintainability over single-line
+                        "clever" solutions.</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell">Resources</td>
+                    <td class="feature-cell">Official OPA Documentation</td>
+                    <td class="description-cell">The primary and most
+                      authoritative source for OPA and Rego.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Spacelift OPA Policy Docs</td>
+                    <td class="description-cell">Specific documentation on
+                      Spacelift's input schemas and policy evaluation
+                      behavior.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Rego Playground</td>
+                    <td class="description-cell">Online environment for writing,
+                      testing, and sharing Rego code.</td>
+                  </tr>
+                  <tr>
+                    <td class="category-cell"></td>
+                    <td class="feature-cell">Community/Forums</td>
+                    <td class="description-cell">Engage with the OPA community
+                      for questions and best practices.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div class="table-footer">
-                <i class="bi bi-book"></i>
-                <div>Official Documentation: openpolicyagent.org/docs | Spacelift OPA Docs | Rego Playground: play.openpolicyagent.org</div>
+              <i class="bi bi-book"></i>
+              <div>Official Documentation: openpolicyagent.org/docs | Spacelift
+                OPA Docs | Rego Playground: play.openpolicyagent.org</div>
             </div>
+          </div>
         </div>
-    </div>
 
-    <script>
+        <script>
         // Add subtle hover effects to category cells
         document.querySelectorAll('.category-cell').forEach(cell => {
             cell.addEventListener('mouseenter', () => {
@@ -1965,5 +1084,5 @@
             observer.observe(card);
         });
     </script>
-</body>
-</html>
+      </body>
+    </html>
