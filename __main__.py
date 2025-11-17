@@ -184,13 +184,10 @@
 """
 Pulumi Static Website with S3 and CloudFront
 Deploys a static website to S3 with CloudFront CDN distribution.
-
-Author: Platform Team
-Last Updated: 2025-01-15
 """
 
-import pulumi  # pyright: ignore[reportMissingImports]
-import pulumi_aws as aws  # type: ignore
+import pulumi
+import pulumi_aws as aws
 import pulumi_synced_folder as synced_folder
 
 # Import the program's configuration settings.
@@ -199,9 +196,8 @@ path = config.get("path") or "./www"
 index_document = config.get("indexDocument") or "index.html"
 error_document = config.get("errorDocument") or "error.html"
 
-# Account for synced_folder creating www/ prefix in S3
-index_document_path = f"www/{index_document}"
-error_document_path = f"www/{error_document}"
+# ✅ FIX: Don't add www/ prefix - synced_folder uploads to bucket root
+# Files are uploaded as: index.html, error.html (not www/index.html)
 
 # Create an S3 bucket.
 bucket = aws.s3.BucketV2("s3-website-bucket")
@@ -211,10 +207,10 @@ site_bucket_website_configuration = aws.s3.BucketWebsiteConfigurationV2(
     "s3-website-bucket-website-configuration",
     bucket=bucket.id,
     index_document=aws.s3.BucketWebsiteConfigurationV2IndexDocumentArgs(
-        suffix=index_document_path,  # Using www/index.html
+        suffix=index_document,  # ✅ Just "index.html"
     ),
     error_document=aws.s3.BucketWebsiteConfigurationV2ErrorDocumentArgs(
-        key=error_document_path,  # Using www/error.html
+        key=error_document,  # ✅ Just "error.html"
     ),
 )
 
@@ -309,12 +305,12 @@ cdn = aws.cloudfront.Distribution(
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=404,
             response_code=404,
-            response_page_path=f"/{error_document_path}",
+            response_page_path=f"/{error_document}",  # ✅ "/error.html"
         ),
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=403,
             response_code=200,
-            response_page_path=f"/{index_document_path}",
+            response_page_path=f"/{index_document}",  # ✅ "/index.html"
         ),
     ],
     restrictions=aws.cloudfront.DistributionRestrictionsArgs(
@@ -325,11 +321,22 @@ cdn = aws.cloudfront.Distribution(
     viewer_certificate=aws.cloudfront.DistributionViewerCertificateArgs(
         cloudfront_default_certificate=True,
     ),
-    default_root_object=index_document_path,
+    default_root_object=index_document,  # ✅ "index.html"
 )
 
 # Export the URLs and hostnames of the bucket and distribution.
 pulumi.export("s3_bucket_name", bucket.bucket)
+pulumi.export("s3_bucket_arn", bucket.arn)
 pulumi.export("s3_website_url", site_bucket_website_configuration.website_endpoint)
 pulumi.export("cloudfront_domain_name", cdn.domain_name)
+pulumi.export("cloudfront_distribution_id", cdn.id)
 pulumi.export("website_url", pulumi.Output.concat("https://", cdn.domain_name))
+pulumi.export("files_uploaded", bucket_folder.file_count)
+pulumi.export(
+    "cache_invalidation_command",
+    pulumi.Output.concat(
+        "aws cloudfront create-invalidation --distribution-id ",
+        cdn.id,
+        " --paths '/*'",
+    ),
+)
