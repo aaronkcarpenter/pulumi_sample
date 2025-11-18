@@ -6,6 +6,8 @@ stack_defaults:
   before_plan:
     - .spacelift/hooks/00-aws-env.sh
   before_apply:
+    - apt-get update
+    - apt-get install -y awscli
     - pip install -r requirements.txt
     - .spacelift/hooks/00-aws-env.sh
 
