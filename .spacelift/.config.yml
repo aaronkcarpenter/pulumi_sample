@@ -1,5 +1,4 @@
 version: "2"
-
 stack_defaults:
   before_init:
     - .spacelift/hooks/00-aws-env.sh
@@ -10,7 +9,6 @@ stack_defaults:
     - apt-get install -y awscli
     - pip install -r requirements.txt
     - .spacelift/hooks/00-aws-env.sh
-
   # Force AWS SDK to ignore ~/.aws config & kill profiles in worker runs
   environment:
     AWS_SDK_LOAD_CONFIG: "0"
