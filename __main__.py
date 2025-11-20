@@ -1,37 +1,33 @@
 """
-
 Pulumi Static Website with S3 and CloudFront
-Deploys a static website to S3 with CloudFront CDN distribution.
-
 """
 
 import pulumi
 import pulumi_aws as aws
 import pulumi_synced_folder as synced_folder
 
-# Import the program's configuration settings.
+# Config
 config = pulumi.Config()
 path = config.get("path") or "./www"
 index_document = config.get("indexDocument") or "index.html"
 error_document = config.get("errorDocument") or "error.html"
 
-# Create an S3 bucket.
-bucket = aws.s3.BucketV2("s3-website-bucket")
+# 1. S3 bucket (non-deprecated)
+bucket = aws.s3.Bucket("s3-website-bucket")
 
-# Configure the S3 bucket for website hosting.
-# AWS requires JUST the filename, no paths allowed
-site_bucket_website_configuration = aws.s3.BucketWebsiteConfigurationV2(
+# 2. Website configuration (non-V2)
+site_bucket_website_configuration = aws.s3.BucketWebsiteConfiguration(
     "s3-website-bucket-website-configuration",
     bucket=bucket.id,
-    index_document=aws.s3.BucketWebsiteConfigurationV2IndexDocumentArgs(
-        suffix=index_document,  # Must be just "index.html"
+    index_document=aws.s3.BucketWebsiteConfigurationIndexDocumentArgs(
+        suffix=index_document,  # e.g. "index.html" (no slashes)
     ),
-    error_document=aws.s3.BucketWebsiteConfigurationV2ErrorDocumentArgs(
-        key=error_document,  # Must be just "error.html"
+    error_document=aws.s3.BucketWebsiteConfigurationErrorDocumentArgs(
+        key=error_document,  # e.g. "error.html" (no slashes)
     ),
 )
 
-# Set ownership controls for the new bucket
+# 3. Ownership controls
 ownership_controls = aws.s3.BucketOwnershipControls(
     "ownership-controls",
     bucket=bucket.id,
@@ -40,7 +36,7 @@ ownership_controls = aws.s3.BucketOwnershipControls(
     ),
 )
 
-# Configure public access block settings.
+# 4. Public access block (allow public website policy)
 public_access_block = aws.s3.BucketPublicAccessBlock(
     "public-access-block",
     bucket=bucket.id,
@@ -51,7 +47,7 @@ public_access_block = aws.s3.BucketPublicAccessBlock(
 )
 
 
-# Apply a public read policy to the S3 bucket.
+# 5. Bucket policy for public read
 def public_read_policy_for_bucket(the_bucket_arn):
     return pulumi.Output.json_dumps(
         {
@@ -61,9 +57,7 @@ def public_read_policy_for_bucket(the_bucket_arn):
                     "Effect": "Allow",
                     "Principal": "*",
                     "Action": ["s3:GetObject"],
-                    "Resource": [
-                        f"{the_bucket_arn}/*",
-                    ],
+                    "Resource": [f"{the_bucket_arn}/*"],
                 },
             ],
         },
@@ -77,17 +71,18 @@ bucket_policy = aws.s3.BucketPolicy(
     opts=pulumi.ResourceOptions(depends_on=[public_access_block, ownership_controls]),
 )
 
-
+# 6. Pulumi-managed sync of ./www -> S3 (no aws CLI)
 bucket_folder = synced_folder.S3BucketFolder(
     "bucket-folder",
     acl="public-read",
     bucket_name=bucket.bucket,
     path=path,
-    managed_objects=False,
+    # managed_objects defaults to True, but we set it explicitly for clarity.
+    managed_objects=True,
     opts=pulumi.ResourceOptions(depends_on=[bucket_policy]),
 )
 
-# Create a CloudFront CDN to distribute and cache the website.
+# 7. CloudFront Distribution using the S3 website endpoint as origin
 cdn = aws.cloudfront.Distribution(
     "cdn",
     enabled=True,
@@ -123,12 +118,12 @@ cdn = aws.cloudfront.Distribution(
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=404,
             response_code=404,
-            response_page_path=f"/{error_document}",  # "/error.html"
+            response_page_path=f"/{error_document}",
         ),
         aws.cloudfront.DistributionCustomErrorResponseArgs(
             error_code=403,
             response_code=200,
-            response_page_path=f"/{index_document}",  # "/index.html"
+            response_page_path=f"/{index_document}",
         ),
     ],
     restrictions=aws.cloudfront.DistributionRestrictionsArgs(
@@ -139,10 +134,10 @@ cdn = aws.cloudfront.Distribution(
     viewer_certificate=aws.cloudfront.DistributionViewerCertificateArgs(
         cloudfront_default_certificate=True,
     ),
-    default_root_object=index_document,  # "index.html"
+    default_root_object=index_document,
 )
 
-# Export the URLs and hostnames of the bucket and distribution.
+# 8. Outputs
 pulumi.export("s3_bucket_name", bucket.bucket)
 pulumi.export("s3_bucket_arn", bucket.arn)
 pulumi.export("s3_website_url", site_bucket_website_configuration.website_endpoint)
