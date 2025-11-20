@@ -1,5 +1,5 @@
 config:
   aws:region: us-east-2
-  static_site_sample:sitePath: www
+  static_site_sample:sitePath: ./www
   static_site_sample:indexDocument: index.html
   static_site_sample:errorDocument: error.html
